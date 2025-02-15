@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Link } from 'react-router-dom';
+
 
 const banners = [
   {
@@ -40,12 +42,15 @@ const Banner = () => {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <div className="text-center glass p-8 rounded-lg">
-                  <h2 className="text-4xl font-bold text-white mb-4">{banner.title}</h2>
-                  <p className="text-xl text-white">{banner.description}</p>
-                  <button className="mt-6 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                    Shop Now
-                  </button>
+                <div className="text-center glass p-10 rounded-lg">
+                  <h2 className="text-4xl font-bold text-white mb-6">{banner.title}</h2>
+               {/*    <p className="text-xl text-white">{banner.description}</p> */}
+                  <Link  to={'/all-Bicycle'} className="mt-6 px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+              
+                  View All
+
+                  </Link>
+                
                 </div>
               </div>
             </div>
