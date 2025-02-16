@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Bike, ShoppingCart, User, Menu, X } from 'lucide-react';
+import { Bike, ShoppingCart,  Menu, X } from 'lucide-react';
 import Login from './auth/Login';
 import Register from './auth/Register';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,11 +25,9 @@ const Navbar = () => {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <a href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md  text-lg font-medium">Home</a>
-                  <a href="/all-Bicycle" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">All-Bicycle</a>
-                  <a href="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</a>
-                  <a href="/contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Contact</a>
-                  <a href="/blog" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Blog</a>
+                  <Link to="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md  text-lg font-medium">Home</Link>
+                  <Link to="/all-Bicycle" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">All-Bicycle</Link>
+                  <Link to="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</Link>
                 </div>
               </div>
             </div>
