@@ -1,6 +1,6 @@
 import { Button } from "../..//components/ui/button";
 import { Card } from "../../components/ui/card";
-import { Bike, ShoppingCart } from "lucide-react";
+import {  ShoppingCart } from "lucide-react";
 
 function BicycleDetail() {
   const bicycle = {

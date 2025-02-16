@@ -10,12 +10,13 @@ import { Root } from "../Root/Root";
 import { Error } from "../page/error/Error";
 import Register from './../components/auth/Register';
 import { BicycleCard } from './../page/allBicyclePage/bicycle-Card';
-import About from './../page/about/about';
+
 import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import { Admin } from "../dashboard/admin/admin";
 import { User } from "../dashboard/user/User";
 import { Checkout } from "../payment/Checkout";
 import BicycleDetail from "../page/bicycleDetail/BicycleDetail";
+import { AboutPage } from './../page/about/about';
 
 
 export const router = createBrowserRouter([
@@ -28,7 +29,7 @@ export const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/all-Bicycle", element: <BicycleCard /> },
-      { path: "/about", element: <About /> },
+      { path: "/about", element: <AboutPage/> },
       { path: "/checkout", element: <Checkout /> },
       { path: "/detail", element: <BicycleDetail /> },
     ],
@@ -48,3 +49,5 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
+
