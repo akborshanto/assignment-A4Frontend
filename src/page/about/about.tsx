@@ -1,6 +1,6 @@
 import { Button } from "../../components/ui/aboutButton";
 import { Card } from "../../components/ui/aboutCart";
-import { Bike, Clock, MapPin, Shield, Star, Users, Wrench } from "lucide-react";
+import { /* Bike, */ Clock, MapPin, Shield, Star, Users, Wrench } from "lucide-react";
 
 export const AboutPage = () => {
   const features = [
@@ -29,13 +29,13 @@ export const AboutPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {/* Header */}
           <nav className="flex items-center justify-between mb-16">
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <Bike className="w-10 h-10 text-indigo-400" />
               <span className="text-2xl font-bold text-white">VeloVista</span>
             </div>
             <Button variant="ghost" className="text-white hover:bg-white/20">
               Contact Us
-            </Button>
+            </Button> */}
           </nav>
 
           {/* Hero Section */}

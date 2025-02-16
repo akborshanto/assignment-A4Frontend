@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useGetTasksQuery } from '../../redux/api/baseApi/baseApi';
+
 
 const bikes = [
   {
@@ -41,6 +43,8 @@ const bikes = [
 ];
 
 export const BicycleCard = () => {
+  const { data } = useGetTasksQuery();
+  console.log(data)
   return (
     <section className="py-16 px-4 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
