@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed w-full z-50 glass">
+      <nav className="fixed w-full z-50 glass ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -24,11 +24,11 @@ const Navbar = () => {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <a href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                  <a href="/all-Bicycle" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">All-Bicycle</a>
-                  <a href="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                  <a href="/contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-                  <a href="/blog" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                  <a href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md  text-lg font-medium">Home</a>
+                  <a href="/all-Bicycle" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">All-Bicycle</a>
+                  <a href="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</a>
+                  <a href="/contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Contact</a>
+                  <a href="/blog" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">Blog</a>
                 </div>
               </div>
             </div>
@@ -72,6 +72,7 @@ const Navbar = () => {
               <a href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">About</a>
               <a href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Contact</a>
               <a href="/blog" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Blog</a>
+              <a href="/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Dashboard</a>
             </div>
             <div className="px-4 py-3 border-t border-gray-200">
               <button 

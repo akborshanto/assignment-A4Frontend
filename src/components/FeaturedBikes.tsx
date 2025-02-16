@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const bikes = [
   {
@@ -62,8 +63,9 @@ const FeaturedBikes = () => {
             <div className="p-4">
               <h3 className="text-xl font-semibold text-gray-800">{bike.name}</h3>
               <p className="text-blue-600 font-bold mt-2">{bike.price}</p>
-              <button className="w-full mt-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                Add to Cart
+              <button  className="w-full mt-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+                <Link to='/all-Bicycle'> View All</Link>
+             
               </button>
             </div>
           </div>

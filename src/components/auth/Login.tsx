@@ -17,20 +17,20 @@ const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 text-white">
       <div className="relative w-full max-w-md p-8 glass rounded-lg shadow-xl mx-4">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          className="absolute top-4 right-4 text-white hover:text-white"
         >
           <X className="h-6 w-6" />
         </button>
         
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Welcome Back</h2>
+        <h2 className="text-2xl font-bold text-white mb-6">Welcome Back</h2>
         
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 text-white">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Email Address
             </label>
             <div className="relative">
@@ -47,7 +47,7 @@ const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Password
             </label>
             <div className="relative">
@@ -70,7 +70,7 @@ const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
                 id="remember"
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
-              <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">
+              <label htmlFor="remember" className="ml-2 block text-sm text-white">
                 Remember me
               </label>
             </div>

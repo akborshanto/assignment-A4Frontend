@@ -1,41 +1,50 @@
 import { createBrowserRouter } from "react-router-dom";
 
 
-
 import Home from "../page/home/Home";
-import Login from './../components/auth/Login';
+import Login from "../components/auth/Login";
 
-import { Error } from './../page/error/Error';
-import Register from './../components/auth/Register';
+
+import DashboardMain from "../dashboard/DashboardMain";
 import { Root } from "../Root/Root";
-import { BicycleCard } from "../page/allBicyclePage/bicycle-Card";
+import { Error } from "../page/error/Error";
+import Register from './../components/auth/Register';
+import { BicycleCard } from './../page/allBicyclePage/bicycle-Card';
+import About from './../page/about/about';
+import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
+import { Admin } from "../dashboard/admin/admin";
+import { User } from "../dashboard/user/User";
+import { Checkout } from "../payment/Checkout";
+import BicycleDetail from "../page/bicycleDetail/BicycleDetail";
 
 
-export const router=createBrowserRouter([
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />, // ✅ Navbar & Footer থাকবে
+    errorElement: <Error />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/all-Bicycle", element: <BicycleCard /> },
+      { path: "/about", element: <About /> },
+      { path: "/checkout", element: <Checkout /> },
+      { path: "/detail", element: <BicycleDetail /> },
+    ],
+  },
 
-    {
-        path:'/',
-        element:<Root></Root>,
-        errorElement:<Error></Error>,
-        children:[
-            //home
-            {path:'/',
-                element:<Home></Home>
-            },
-            //authentication
-            {
-                path:'/login',
-                element:<Login></Login>
-            },
-            {
-                path:'/register',
-                element:<Register></Register>
-            },
-            {
-                path:'/all-Bicycle',
-                element:<BicycleCard></BicycleCard>
-            },
-            
-        ]
-    }
-])
+  // ✅ Dashboard Routes (Navbar & Footer ছাড়া)
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />, // ✅ Navbar & Footer নেই
+    children: [
+      { path: "/dashboard", element: <DashboardMain /> },
+
+
+      { path: "/dashboard/admin", element: <Admin /> },
+      { path: "/dashboard/user", element: <User /> },
+      // এখানে dashboard-এর আরো route যোগ করতে পারো
+    ],
+  },
+]);

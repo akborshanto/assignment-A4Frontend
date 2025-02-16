@@ -32,16 +32,16 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
       <div className="relative w-full max-w-md p-8 glass rounded-lg shadow-xl mx-4">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          className="absolute top-4 right-4 text-white hover:text-white"
         >
           <X className="h-6 w-6" />
         </button>
         
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Create Account</h2>
+        <h2 className="text-2xl font-bold text-white mb-6">Create Account</h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Full Name
             </label>
             <div className="relative">
@@ -59,7 +59,7 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Email Address
             </label>
             <div className="relative">
@@ -77,7 +77,7 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Password
             </label>
             <div className="relative">
@@ -95,7 +95,7 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Confirm Password
             </label>
             <div className="relative">
