@@ -93,8 +93,8 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
               />
             </div>
           </div>
-          
-          <div>
+          {/* confirm password */}
+        {/*   <div>
             <label className="block text-sm font-medium text-white mb-2">
               Confirm Password
             </label>
@@ -110,8 +110,10 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
                 required
               />
             </div>
-          </div>
+          </div> */}
           
+
+
           <button
             type="submit"
             className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"

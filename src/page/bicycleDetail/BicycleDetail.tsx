@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../..//components/ui/button";
 import { Card } from "../../components/ui/card";
 import {  ShoppingCart } from "lucide-react";
@@ -69,6 +70,7 @@ function BicycleDetail() {
               </div>
 
               {/* Buy Now Button */}
+              <Link to={'/checkout'}>
               <Button
                 onClick={handleBuyNow}
                 className="w-full py-6 text-lg bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors"
@@ -76,6 +78,8 @@ function BicycleDetail() {
                 <ShoppingCart className="mr-2 h-5 w-5" />
                 Buy Now
               </Button>
+              </Link>
+            
             </div>
           </Card>
         </div>

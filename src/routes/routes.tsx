@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
 
       { path: "/dashboard/admin", element: <Admin /> },
       { path: "/dashboard/user", element: <User /> },
-      // এখানে dashboard-এর আরো route যোগ করতে পারো
+      // এখানে dashboard-এর আরো route যোগ করতে পারো'
     ],
   },
 ]);
