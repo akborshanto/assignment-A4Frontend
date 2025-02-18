@@ -20,8 +20,19 @@ AddUser: builder.mutation({
     }),
   }),
 
+//search funtionality and bicycle
+
+getBicycles:builder.query({
+  query: (filters) => {
+    const queryString = new URLSearchParams(filters).toString();
+    return `bicycle?${queryString}`;
+  },
+})
+
+
+
   }),
 });
 
 // ✅ Redux hook export করা
-export const { useGetTasksQuery, useAddUserMutation } = baseApi;
+export const { useGetTasksQuery, useAddUserMutation,useGetBicyclesQuery } = baseApi;
