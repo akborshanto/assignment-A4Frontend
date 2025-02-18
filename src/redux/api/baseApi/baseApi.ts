@@ -11,11 +11,12 @@ export const baseApi = createApi({
       query: () => "/bicycle", 
     }),
 //post requers
-createBicycle: builder.mutation({
-    query: (newBicycle) => ({
-      url: "/bicycle/create-bicycle",          // আপনার API Endpoint
-      method: "POST",           // HTTP Method
-      body: newBicycle,        // যেটি আপনি পাঠাতে চান (POST Data)
+AddUser: builder.mutation({
+    query: (newBicycle) => (console.log(newBicycle),{
+       
+      url: "/user/create-user",          // আপনার API Endpoint
+      method: "POST",          
+      body: newBicycle,      
     }),
   }),
 
@@ -23,4 +24,4 @@ createBicycle: builder.mutation({
 });
 
 // ✅ Redux hook export করা
-export const { useGetTasksQuery, useAddBicycleMutation } = baseApi;
+export const { useGetTasksQuery, useAddUserMutation } = baseApi;

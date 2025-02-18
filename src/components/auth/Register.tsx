@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { X, Mail, Lock, User } from 'lucide-react';
+import { useAddUserMutation } from '../../redux/api/baseApi/baseApi';
+import toast from 'react-hot-toast';
 
 interface RegisterProps {
   onClose: () => void;
@@ -7,26 +10,29 @@ interface RegisterProps {
 }
 
 const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+const[addData,{isLoading,isSuccess,isError}]=useAddUserMutation(undefined)
+  const onSubmit = async(data: any) => {
+    // console.log(data.result)
+    await addData(data)
+   
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle registration logic here
-    console.log('Register:', formData);
-  };
 
+  
+  useEffect(() => {
+   if (isSuccess) {
+      toast.success('user created successfullt ');
+    } else if (isError) {
+      toast.error('ERROR ');
+    }
+  }, [isLoading, isSuccess, isError]);
+  
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="relative w-full max-w-md p-8 glass rounded-lg shadow-xl mx-4">
@@ -36,10 +42,11 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
         >
           <X className="h-6 w-6" />
         </button>
-        
+
         <h2 className="text-2xl font-bold text-white mb-6">Create Account</h2>
-        
-        <form onSubmit={handleSubmit} className="space-y-6">
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Full Name */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
               Full Name
@@ -48,16 +55,17 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
+                {...register('name', { required: 'Full name is required' })}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your full name"
-                required
               />
             </div>
+            {errors.fullName && (
+              <p className="text-red-500 text-sm">{errors.fullName.message}</p>
+            )}
           </div>
-          
+
+          {/* Email */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
               Email Address
@@ -66,16 +74,23 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: 'Invalid email address',
+                  },
+                })}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your email"
-                required
               />
             </div>
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
           </div>
-          
+
+          {/* Password */}
           <div>
             <label className="block text-sm font-medium text-white mb-2">
               Password
@@ -84,16 +99,23 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                })}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Create a password"
-                required
               />
             </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
           </div>
-          {/* confirm password */}
+
+          {/* Confirm Password */}
         {/*   <div>
             <label className="block text-sm font-medium text-white mb-2">
               Confirm Password
@@ -102,17 +124,19 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
+                {...register('confirmPassword', {
+                  required: 'Confirm password is required',
+                  validate: (value) =>
+                    value === watch('password') || 'Passwords do not match',
+                })}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Confirm your password"
-                required
               />
             </div>
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p>
+            )}
           </div> */}
-          
-
 
           <button
             type="submit"
@@ -121,7 +145,7 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
             Create Account
           </button>
         </form>
-        
+
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}

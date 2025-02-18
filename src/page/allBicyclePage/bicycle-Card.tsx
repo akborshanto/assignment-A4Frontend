@@ -1,80 +1,64 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import {  useGetTasksQuery } from '../../redux/api/baseApi/baseApi';
+import { Bike, ShoppingCart, Package, Tag } from 'lucide-react';
 
+const bikes = Array(6).fill({
+  name: "Caca Bike",
+  brand: "Giant",
+  price: 4354,
+  model: "XTR-500",
+  stock: 15,
+  image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&q=80&w=800"
+});
 
-const bikes = [
-  {
-    id: 1,
-    name: "Mountain Explorer Pro",
-    price: "$1,299",
-    image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=2008&auto=format&fit=crop"
-  },
-  {
-    id: 2,
-    name: "Urban Commuter Elite",
-    price: "$899",
-    image: "https://images.unsplash.com/photo-1529422643029-d4585747aaf2?q=80&w=2940&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    name: "Road Master Carbon",
-    price: "$2,499",
-    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=2940&auto=format&fit=crop"
-  },
-  {
-    id: 4,
-    name: "E-Bike Cruiser",
-    price: "$1,899",
-    image: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=2940&auto=format&fit=crop"
-  },
-  {
-    id: 5,
-    name: "Trail Blazer X",
-    price: "$1,599",
-    image: "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?q=80&w=2940&auto=format&fit=crop"
-  },
-  {
-    id: 6,
-    name: "City Rider Pro",
-    price: "$799",
-    image: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?q=80&w=2940&auto=format&fit=crop"
-  }
-];
-
-export const BicycleCard = () => {
-  const { data,isLoading,error } = useGetTasksQuery(undefined);
-  console.log(data,isLoading,error)
-  //mutation
- 
+export const  AllBicyclePage=()=> {
   return (
-    <section className="py-16 px-4 max-w-7xl mx-auto">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800">Featured Bikes</h2>
-        <button className="flex items-center gap-2 text-blue-600 hover:text-blue-700">
-          View All <ArrowRight className="h-4 w-4" />
-        </button>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {bikes.map((bike) => (
-          <div key={bike.id} className="glass rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-            <div className="h-64 overflow-hidden">
-              <img
-                src={bike.image}
-                alt={bike.name}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
+    <div className="min-h-screen bg-white p-6 md:p-8 lg:p-12">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">Premium Bikes Collection</h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {bikes.map((bike, index) => (
+            <div key={index} className="group">
+              <div className="relative bg-gray-50/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl border border-gray-200">
+                <div className="h-64 overflow-hidden">
+                  <img 
+                    src={bike.image} 
+                    alt={bike.name}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                
+                <div className="p-6">
+                  <div className="absolute -top-4 -right-4 bg-purple-500 text-white p-3 rounded-full shadow-lg">
+                    <Bike className="w-6 h-6" />
+                  </div>
+                  
+                  <h2 className="text-2xl font-bold text-gray-800 mb-2">{bike.name}</h2>
+                  <p className="text-purple-600 mb-4 font-medium">{bike.brand} - {bike.model}</p>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center text-gray-700">
+                      <Tag className="w-5 h-5 mr-2 text-purple-500" />
+                      <span className="text-lg font-semibold">${bike.price.toLocaleString()}</span>
+                    </div>
+                    
+                    <div className="flex items-center text-gray-600">
+                      <Package className="w-5 h-5 mr-2 text-purple-500" />
+                      <span>{bike.stock} in stock</span>
+                    </div>
+                  </div>
+                  
+                  <button className="mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300">
+                    <ShoppingCart className="w-5 h-5" />
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="p-4">
-              <h3 className="text-xl font-semibold text-gray-800">{bike.name}</h3>
-              <p className="text-blue-600 font-bold mt-2">{bike.price}</p>
-              <button className="w-full mt-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
-};
+}
+
