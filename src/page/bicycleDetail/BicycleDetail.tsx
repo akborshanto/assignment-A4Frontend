@@ -99,7 +99,7 @@ const BicycleDetail = () => {
                 className="group h-[500px] overflow-hidden rounded-xl shadow-lg"
               >
                 <img
-                  src={bike.image}
+                  src={bike.photo}
                   alt={bike.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />

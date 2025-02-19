@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Bike, ShoppingCart, Package, Tag } from "lucide-react";
 import { useGetBicyclesQuery } from "../../redux/api/baseApi/baseApi";
 import { Link } from "react-router-dom";
+import { Loading } from "../../components/ui/loading";
+
 
 interface Bike {
   id: string; // Add an id to the Bike type
@@ -15,7 +17,7 @@ interface Bike {
 
 export const AllBicyclePage = () => {
   const [cart, setCart] = useState<Bike[]>([]);
-  console.log(cart);
+
   const [filters, setFilters] = useState({
     searchTerm: "",
     minPrice: 0,
@@ -30,8 +32,7 @@ export const AllBicyclePage = () => {
     isLoading,
     refetch,
   } = useGetBicyclesQuery(filters);
-  console.log(bikes);
-
+ 
   /*   const handleAddToCart = (bike: Bike) => {
     setCart((prevCart) => [...prevCart, bike]);
   }; */
@@ -117,7 +118,7 @@ export const AllBicyclePage = () => {
 
         {isLoading ? (
           <p className="text-center text-gray-600 text-lg">
-            Loading bicycles...
+        <Loading></Loading>
           </p>
         ) : error ? (
           <p className="text-center text-red-500 text-lg">
@@ -142,7 +143,7 @@ export const AllBicyclePage = () => {
                 <div className="relative bg-gray-50/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl border border-gray-200">
                   <div className="h-64 overflow-hidden">
                     <img
-                      src={bike.image}
+                      src={bike?.photo}
                       alt={bike.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />

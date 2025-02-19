@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAddBicycleMutation } from "../../redux/api/baseApi/baseApi";
+import toast from "react-hot-toast";
+import { Loading } from "../../components/ui/loading";
 
 export const BicycleController = () => {
-  const [addData, { isLoading }] = useAddBicycleMutation();
+  const [addData, { isLoading ,isSuccess}] = useAddBicycleMutation();
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [imageUploading, setImageUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
@@ -45,11 +47,19 @@ export const BicycleController = () => {
     }
 
     const bicycleData = { ...data, photo: imageUrl };
-
+    if(isLoading){
+        return <Loading></Loading>
+    }
     await addData(bicycleData);
-    reset();
-    setImageUrl("");
+    if(isSuccess){
+        toast.success('Bicycle created successfully')
+        reset();
+        setImageUrl("");
+        return null
+    }
+ 
   };
+
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
