@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAddBicycleMutation } from "../../redux/api/baseApi/baseApi";
 import toast from "react-hot-toast";
 import { Loading } from "../../components/ui/loading";
+import BallsLoading from "../../components/ui/balls.loading";
 
 export const BicycleController = () => {
   const [addData, { isLoading ,isSuccess}] = useAddBicycleMutation();
@@ -135,7 +136,7 @@ export const BicycleController = () => {
             }}
             className="mt-1 block w-full px-3 py-2 border rounded-md"
           />
-          {imageUploading && <p className="text-blue-500 text-sm">Uploading image...</p>}
+          {imageUploading && <p className="text-blue-500 text-sm"><BallsLoading></BallsLoading></p>}
           {imageUrl && (
             <p className="text-green-500 text-sm">Image uploaded successfully!</p>
           )}
