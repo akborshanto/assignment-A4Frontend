@@ -13,7 +13,7 @@ interface DashboardCardProps {
   color: 'purple' | 'green' | 'indigo' | 'emerald';
 }
 
-export function DashboardCard({ icon: Icon, title, value, trend, color }: DashboardCardProps) {
+export function DashboardCard({ icon: Icon, title, value, trend,  }: DashboardCardProps) {
   const colors = {
     purple: 'bg-purple-200/20 text-purple-00',
     blue: 'bg-blue-500/20 text-blue-300',
@@ -25,7 +25,7 @@ export function DashboardCard({ icon: Icon, title, value, trend, color }: Dashbo
     <GlassCard className="transform hover:scale-105 transition-transform">
       <div className="flex items-start justify-between">
         <div className="space-y-4">
-          <div className={`p-3 rounded-lg w-fit ${colors[color]}`}>
+          <div className={`p-3 rounded-lg w-fit ${colors['purple']}`}>
             <Icon className="w-6 h-6" />
           </div>
           <div>

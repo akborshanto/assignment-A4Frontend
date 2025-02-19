@@ -8,7 +8,7 @@ import { DashboardCard } from './DashboardCard';
 
 const sliderItems = [
   {
-    image: 'https://images.unsplash.com/photo-1561642769-1bca263542e0?q=80&w=2940&auto=format&fit=crop',
+    image: 'https://i.ibb.co.com/5XjkyGTh/pexels-davidmcbee-255934.jpg',
 
     title: 'Dashboard Analytics',
     description: 'Track your business performance with our powerful analytics tools',
@@ -19,7 +19,7 @@ const sliderItems = [
     description: 'Efficiently manage your users and their permissions',
   },
   {
-    image: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=2940&auto=format&fit=crop',
+    image: 'https://i.ibb.co.com/wk6dDXR/pexels-thelazyartist-3131286.jpg',
     title: 'Order Processing',
     description: 'Streamline your order management workflow',
   },
@@ -64,7 +64,7 @@ function DashboardMain() {
                 title="Total Users"
                 value="1,234"
                 trend={{ value: "+12.3%", up: true }}
-                color="blue"
+                color="purple"
               />
               <DashboardCard
                 icon={ShoppingCart}
