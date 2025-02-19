@@ -12,16 +12,14 @@ export const baseApi = createApi({
     }),
 //post requers
 AddUser: builder.mutation({
-    query: (newBicycle) => (console.log(newBicycle),{
+    query: (addUser) => (console.log(addUser),{
        
       url: "/user/create-user",          // আপনার API Endpoint
       method: "POST",          
-      body: newBicycle,      
+      body: addUser,      
     }),
   }),
-
 //search funtionality and bicycle
-
 getBicycles:builder.query({
   query: (filters) => {
     const queryString = new URLSearchParams(filters).toString();
@@ -32,11 +30,18 @@ getBicycles:builder.query({
 getBicycleById: builder.query({
   query: (id) => `/bicycle/${id}`,
 }),
+//dashboar bicycle create
 
-
+AddBicycle:builder.mutation({
+  query:(AddBicycle)=>(console.log(AddBicycle),{
+    url: "/bicycle/create-bicycle",          // আপনার API Endpoint
+      method: "POST",          
+      body: AddBicycle,  
+  })
+})
 
   }),
 });
 
 // ✅ Redux hook export করা
-export const { useGetTasksQuery, useAddUserMutation,useGetBicyclesQuery,useGetBicycleByIdQuery } = baseApi;
+export const { useGetTasksQuery, useAddUserMutation,useGetBicyclesQuery,useGetBicycleByIdQuery,useAddBicycleMutation } = baseApi;

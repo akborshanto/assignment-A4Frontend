@@ -6,7 +6,7 @@ interface ProtectedRoutesProps {
 }
 
 const ProtectedRoutes: React.FC<ProtectedRoutesProps> = ({ children }) => {
-  const token = false;
+  const token = true;
 
   if (!token) {
     return <Navigate to="/login" replace />;

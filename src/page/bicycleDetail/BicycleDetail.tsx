@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetBicycleByIdQuery } from "../../redux/api/baseApi/baseApi";
 import { motion } from "framer-motion";
 
@@ -8,7 +8,7 @@ const BicycleDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50">
+      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-purple-500 to-blue-500">
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -152,7 +152,8 @@ const BicycleDetail = () => {
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </motion.p>
-
+                <Link to={'/checkout'} >         
+       
                 <motion.button 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -161,8 +162,9 @@ const BicycleDetail = () => {
                   whileTap={{ scale: 0.98 }}
                   className="w-full py-4 px-8 bg-purple-600 hover:bg-purple-700 text-white text-xl rounded-lg transition-all duration-200 backdrop-blur-sm bg-opacity-90 shadow-lg hover:shadow-xl"
                 >
-                  Add to Cart
+       Buy Now
                 </motion.button>
+                </Link>
               </motion.div>
             </div>
           </motion.div>

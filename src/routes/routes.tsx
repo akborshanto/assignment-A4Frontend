@@ -18,6 +18,7 @@ import { Checkout } from "../payment/Checkout";
 import BicycleDetail from "../page/bicycleDetail/BicycleDetail";
 import { AboutPage } from './../page/about/about';
 import Register from "../components/auth/Register";
+import { BicycleController } from "../dashboard/admin/bicycleController";
 
 
 export const router = createBrowserRouter([
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
 
 
       { path: "/dashboard/admin", element: <Admin /> },
+      { path: "/dashboard/bicycle-controller", element: <BicycleController /> },
       { path: "/dashboard/user", element: <User /> },
       // এখানে dashboard-এর আরো route যোগ করতে পারো'
     ],
