@@ -27,7 +27,11 @@ getBicycles:builder.query({
     const queryString = new URLSearchParams(filters).toString();
     return `bicycle?${queryString}`;
   },
-})
+}),
+//get single bicycle
+getBicycleById: builder.query({
+  query: (id) => `/bicycle/${id}`,
+}),
 
 
 
@@ -35,4 +39,4 @@ getBicycles:builder.query({
 });
 
 // ✅ Redux hook export করা
-export const { useGetTasksQuery, useAddUserMutation,useGetBicyclesQuery } = baseApi;
+export const { useGetTasksQuery, useAddUserMutation,useGetBicyclesQuery,useGetBicycleByIdQuery } = baseApi;

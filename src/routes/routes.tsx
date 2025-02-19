@@ -32,7 +32,8 @@ export const router = createBrowserRouter([
       { path: "/all-Bicycle", element: <AllBicyclePage /> },
       { path: "/about", element: <AboutPage/> },
       { path: "/checkout", element: <Checkout /> },
-      { path: "/detail", element: <BicycleDetail /> },
+      { path: "/detail/:id", element: <BicycleDetail /> }
+
     ],
   },
 

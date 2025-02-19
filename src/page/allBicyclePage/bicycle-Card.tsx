@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Bike, ShoppingCart, Package, Tag } from "lucide-react";
 import { useGetBicyclesQuery } from "../../redux/api/baseApi/baseApi";
+import { Link } from "react-router-dom";
 
 interface Bike {
+  id: string; // Add an id to the Bike type
   name: string;
   brand: string;
   model: string;
@@ -13,6 +15,7 @@ interface Bike {
 
 export const AllBicyclePage = () => {
   const [cart, setCart] = useState<Bike[]>([]);
+  console.log(cart);
   const [filters, setFilters] = useState({
     searchTerm: "",
     minPrice: 0,
@@ -21,16 +24,21 @@ export const AllBicyclePage = () => {
     model: "",
   });
 
-  const { data: bikes, error, isLoading, refetch } = useGetBicyclesQuery(filters);
+  const {
+    data: bikes,
+    error,
+    isLoading,
+    refetch,
+  } = useGetBicyclesQuery(filters);
+  console.log(bikes);
 
-
-  const handleAddToCart = (bike: Bike) => {
+  /*   const handleAddToCart = (bike: Bike) => {
     setCart((prevCart) => [...prevCart, bike]);
-  };
+  }; */
 
   // Function to handle search button click
   const handleSearch = () => {
-    refetch(); 
+    refetch();
   };
 
   // Function to reset filters and show all bicycles
@@ -108,7 +116,9 @@ export const AllBicyclePage = () => {
         </div>
 
         {isLoading ? (
-          <p className="text-center text-gray-600 text-lg">Loading bicycles...</p>
+          <p className="text-center text-gray-600 text-lg">
+            Loading bicycles...
+          </p>
         ) : error ? (
           <p className="text-center text-red-500 text-lg">
             {error instanceof Error ? error.message : "An error occurred"}
@@ -164,13 +174,12 @@ export const AllBicyclePage = () => {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => handleAddToCart(bike)}
+                    <Link
+                      to={`/detail/${bike._id}`} // Navigate to the detail page with the bicycle's ID
                       className="mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300"
                     >
-                      <ShoppingCart className="w-5 h-5" />
-                      Add to Cart
-                    </button>
+                      View Details
+                    </Link>
                   </div>
                 </div>
               </div>
