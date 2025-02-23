@@ -3,14 +3,20 @@ import { Bike, ShoppingCart,  Menu, X } from 'lucide-react';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import { Link } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/auth/authSlice';
 const Navbar = () => {
+  const dispatch=useDispatch()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
+//logout
+const handleLogout=()=>{
+  dispatch(logout())
+}
   return (
     <>
       <nav className="fixed w-full z-50 glass ">
@@ -39,7 +45,7 @@ const Navbar = () => {
                 </button>
                 <button 
                   onClick={() => setShowLogin(true)}
-                  className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium"
+                  className="block w-full mt-2 px-4 py-2 text-center bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                 >
                   Login
                 </button>
@@ -49,6 +55,13 @@ const Navbar = () => {
                 >
                   Sign Up
                 </button>
+                   {/* logout button */}
+         <button 
+                onClick={() => handleLogout()}
+                className="px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors"
+              >
+            LogOut
+              </button>
               </div>
             </div>
             <div className="md:hidden">
@@ -76,11 +89,20 @@ const Navbar = () => {
             <div className="px-4 py-3 border-t border-gray-200">
               <button 
                 onClick={() => setShowLogin(true)}
-                className="block w-full px-4 py-2 text-center text-gray-700 hover:text-blue-600 font-medium"
+                className="block w-full mt-2 px-4 py-2 text-center bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
               >
                 Login
               </button>
-              <button 
+ {/* logout button */}
+ <button 
+                onClick={() => handleLogout()}
+                className="px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors"
+              >
+            LogOut
+              </button>
+           
+{/* signup */}      
+        <button 
                 onClick={() => setShowRegister(true)}
                 className="block w-full mt-2 px-4 py-2 text-center bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
               >
@@ -92,6 +114,7 @@ const Navbar = () => {
       </nav>
 
       {/* Auth Modals */}
+      
       {showLogin && <Login onClose={() => setShowLogin(false)} onSwitchToRegister={() => { setShowLogin(false); setShowRegister(true); }} />}
       {showRegister && <Register onClose={() => setShowRegister(false)} onSwitchToLogin={() => { setShowRegister(false); setShowLogin(true); }} />}
     </>

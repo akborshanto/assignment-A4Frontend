@@ -13,7 +13,7 @@ const ProtectedRoutes: React.FC<ProtectedRoutesProps> = ({ children }) => {
 console.log(token)
   // If the token is not available, redirect to login page.
   if (!token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace={true}/>;
   }
 
   // Otherwise, render the children (protected route content).
