@@ -1,19 +1,46 @@
 import React, { useState } from 'react';
-import { X, Mail, Lock } from 'lucide-react';
+import { X, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useLoginMutation } from '../../redux/auth/auth.api';
+import { Link } from 'react-router-dom';
+import { setUser } from '../../redux/auth/authSlice';
+import { useAppDispatch } from '../../redux/app/hook';
+import { verifyToken } from '../../token/token.utils';
 
 interface LoginProps {
   onClose: () => void;
   onSwitchToRegister: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+interface IFormInput {
+  email: string;
+  password: string;
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle login logic here
-    console.log('Login:', { email, password });
+const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
+  const dispatch = useAppDispatch();
+  const [showPassword, setShowPassword] = useState(false); 
+  const [login, { error, isLoading }] = useLoginMutation(); 
+
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
+    defaultValues: {
+      email: 'test@gmail.com',
+      password: '20022002',
+    },
+  });
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+
+      const res = await login(data).unwrap();
+   
+      const user = verifyToken(res.token);
+      console.log(user)
+      dispatch(setUser({ user, token: res.token }));
+  
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -23,29 +50,35 @@ const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
           onClick={onClose}
           className="absolute top-4 right-4 text-white hover:text-white"
         >
-          <X className="h-6 w-6" />
+          <Link to={'/'}> <X className="h-6 w-6" /></Link>
         </button>
-        
+
         <h2 className="text-2xl font-bold text-white mb-6">Welcome Back</h2>
-        
-        <form onSubmit={handleSubmit} className="space-y-6 text-white">
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 text-white">
           <div>
             <label className="block text-sm font-medium text-white mb-2">
-              Email Address
+              User ID
             </label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Enter your email"
-                required
+                type="text"
+                {...register('email', { 
+                  required: 'User ID is required',
+                  pattern: {
+                    value: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+                    message: 'Invalid email format'
+                  }
+                })}
+                className="w-full pl-10 pr-4 text-gray-500 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter your User ID"
+                disabled={isLoading}
               />
+              {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
             </div>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-white mb-2">
               Password
@@ -53,16 +86,24 @@ const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                type={showPassword ? 'text' : 'password'}
+                {...register('password', { required: 'Password is required' })}
+                className="w-full pl-10 pr-4 py-2 text-gray-500 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your password"
-                required
+                disabled={isLoading}
               />
+              {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              </button>
             </div>
           </div>
-          
+
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
@@ -78,15 +119,18 @@ const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
               Forgot password?
             </button>
           </div>
-          
+
           <button
             type="submit"
+            disabled={isLoading}
             className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Sign In
+            {isLoading ? 'Logging in...' : 'Sign In'}
           </button>
         </form>
-        
+
+        {error && <p className="text-sm text-red-500">Login failed. Please try again.</p>}
+
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}

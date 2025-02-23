@@ -14,12 +14,13 @@ import { AllBicyclePage, BicycleCard } from './../page/allBicyclePage/bicycle-Ca
 import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import { Admin } from "../dashboard/admin/admin";
 import { User } from "../dashboard/user/User";
-import { Checkout } from "../payment/Checkout";
+
 import BicycleDetail from "../page/bicycleDetail/BicycleDetail";
 import { AboutPage } from './../page/about/about';
 import Register from "../components/auth/Register";
 import { BicycleController } from "../dashboard/admin/bicycleController";
-
+import { Order } from './../dashboard/admin/bicycle.order';
+import { Checkout } from './../payment/Checkout';
 
 export const router = createBrowserRouter([
   {
@@ -43,13 +44,18 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout />, // ✅ Navbar & Footer নেই
     children: [
-      { path: "/dashboard", element: <DashboardMain /> },
+      { path: "/dashboard", element:
+  
+        <DashboardMain />
+        
+         },
 
 
       { path: "/dashboard/admin", element: <Admin /> },
       { path: "/dashboard/bicycle-controller", element: <BicycleController /> },
+      { path: "/dashboard/order", element: <Order /> },
       { path: "/dashboard/user", element: <User /> },
-      // এখানে dashboard-এর আরো route যোগ করতে পারো'
+     
     ],
   },
 ]);

@@ -13,7 +13,7 @@ export const BicycleController = () => {
 
   const imgBB_API_KEY = "a7c1b646d9d84adbad01ccc764183aa2"; // Replace with your actual API key
 
-  const uploadImageToImgBB = async (file) => {
+  const uploadImageToImgBB = async (file:any) => {
     const formData = new FormData();
     formData.append("image", file);
 

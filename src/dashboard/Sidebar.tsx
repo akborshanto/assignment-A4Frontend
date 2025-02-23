@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, X, LayoutDashboard, Users, ShoppingCart, Settings, BarChart3, Bell, User } from "lucide-react";
+import { Menu, X, LayoutDashboard, Users, ShoppingCart,  BarChart3, Bell, User } from "lucide-react";
 
 export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
-
+const role='admin'
   const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin", active: false },
     { icon: Users, label: "Users", path: "/admin/users", active: false },
-    { icon: ShoppingCart, label: "Orders", path: "/admin/orders", active: false },
+    { icon: ShoppingCart, label: "Orders", path: "/dashboard/order", active: false },
     { icon: BarChart3, label: "Add Bicycle", path: "/dashboard/bicycle-controller", active: false },
   /*   { icon: Settings, label: "Settings", path: "/admin/settings", active: false },
     { icon: User, label: "", path: "", active: false }, */
   ];
-
+console.log(isOpen)
   return (
     <>
       {/* Mobile Menu Button */}
@@ -61,7 +61,7 @@ export function Sidebar() {
                     <item.icon className="w-6 h-6" />
                     <span
   className={`whitespace-nowrap transition-all duration-700 
-  ${!isOpen && "lg:opacity-0"}`}
+  ${!isOpen && "opacity-0"}`}
 >
   {item.label}
 </span>

@@ -49,7 +49,7 @@ const BicycleDetail = () => {
   }
 
   return (
-    <div className="fixed inset-0 overflow-y-auto">
+    <div className=" inset-0 overflow-y-auto min-h-screen ">
       {/* Animated background gradients */}
       <div className="fixed inset-0 bg-gradient-to-br from-purple-200/30 via-white/20 to-blue-200/30 animate-gradient" />
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />

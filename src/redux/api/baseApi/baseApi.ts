@@ -1,47 +1,61 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { MainbaseApi } from "../../auth/mainBaseApi";
 
-
-export const baseApi = createApi({
-  reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }), 
+export const baseApi = MainbaseApi.injectEndpoints({
   endpoints: (builder) => ({
-
-    //get request
+    // Get all tasks
     getTasks: builder.query({
-      query: () => "/bicycle", 
+      query: () => "/bicycle",
     }),
-//post requers
-AddUser: builder.mutation({
-    query: (addUser) => (console.log(addUser),{
-       
-      url: "/user/create-user",          // আপনার API Endpoint
-      method: "POST",          
-      body: addUser,      
+
+    // Add a new user
+    addUser: builder.mutation({
+      query: (userData) => ({
+        url: "/user/create-user",
+        method: "POST",
+        body: userData,
+      }),
     }),
-  }),
-//search funtionality and bicycle
-getBicycles:builder.query({
-  query: (filters) => {
-    const queryString = new URLSearchParams(filters).toString();
-    return `bicycle?${queryString}`;
-  },
-}),
-//get single bicycle
-getBicycleById: builder.query({
-  query: (id) => `/bicycle/${id}`,
-}),
-//dashboar bicycle create
 
-AddBicycle:builder.mutation({
-  query:(AddBicycle)=>(console.log(AddBicycle),{
-    url: "/bicycle/create-bicycle",          // আপনার API Endpoint
-      method: "POST",          
-      body: AddBicycle,  
-  })
-})
+    // Search functionality & get bicycles with filters
+    getBicycles: builder.query({
+      query: (filters) => {
+        const queryString = new URLSearchParams(filters).toString();
+        return `/bicycle?${queryString}`;
+      },
+    }),
 
+    // Get single bicycle by ID
+    getBicycleById: builder.query({
+      query: (id) => `/bicycle/${id}`,
+    }),
+
+    // Add a new bicycle
+    addBicycle: builder.mutation({
+      query: (bicycleData) => ({
+        url: "/bicycle/create-bicycle",
+        method: "POST",
+        body: bicycleData,
+      }),
+    }),
+
+    // Add an order
+    addOrder: builder.mutation({
+      query: (orderData) => ({
+        url: "/order/create-order",
+        method: "POST",
+        body: orderData, 
+      }),
+    }),
   }),
 });
 
-// ✅ Redux hook export করা
-export const { useGetTasksQuery, useAddUserMutation,useGetBicyclesQuery,useGetBicycleByIdQuery,useAddBicycleMutation } = baseApi;
+// ✅ Redux hooks export
+export const {
+  useGetTasksQuery,
+  useAddUserMutation,
+  useGetBicyclesQuery,
+  useGetBicycleByIdQuery,
+  useAddBicycleMutation,
+  useAddOrderMutation,
+} = baseApi;
