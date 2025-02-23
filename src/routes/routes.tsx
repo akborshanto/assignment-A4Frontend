@@ -13,7 +13,7 @@ import { AllBicyclePage, BicycleCard } from './../page/allBicyclePage/bicycle-Ca
 
 import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import { Admin } from "../dashboard/admin/admin";
-import { User } from "../dashboard/user/User";
+// import { User } from "../dashboard/user/User";
 
 import BicycleDetail from "../page/bicycleDetail/BicycleDetail";
 import { AboutPage } from './../page/about/about';
@@ -21,6 +21,7 @@ import Register from "../components/auth/Register";
 import { BicycleController } from "../dashboard/admin/bicycleController";
 import { Order } from './../dashboard/admin/bicycle.order';
 import { Checkout } from './../payment/Checkout';
+import { User } from "../dashboard/user/User";
 
 export const router = createBrowserRouter([
   {

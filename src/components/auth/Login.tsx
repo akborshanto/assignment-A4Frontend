@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { X, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useLoginMutation } from '../../redux/auth/auth.api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setUser } from '../../redux/auth/authSlice';
 import { useAppDispatch } from '../../redux/app/hook';
 import { verifyToken } from '../../token/token.utils';
+import toast from 'react-hot-toast';
 
 interface LoginProps {
   onClose: () => void;
@@ -19,6 +20,7 @@ interface IFormInput {
 
 const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
   const dispatch = useAppDispatch();
+  const navigate=useNavigate()
   const [showPassword, setShowPassword] = useState(false); 
   const [login, { error, isLoading }] = useLoginMutation(); 
 
@@ -30,13 +32,21 @@ const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-
-      const res = await login(data).unwrap();
+try {
+  const res = await login(data).unwrap();
    
       const user = verifyToken(res.token);
-      console.log(user)
+      // console.log(user.role)
       dispatch(setUser({ user, token: res.token }));
+ // Navigate to the corresponding dashboard based on the user's role
+navigate(`/dashboard/${user?.role}`);
+toast.success("Successfully login😍")
+} catch (error) {
   
+console.log(error)
+
+}
+      
   };
 
   const togglePasswordVisibility = () => {

@@ -152,7 +152,7 @@ const BicycleDetail = () => {
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </motion.p>
-                <Link to={'/checkout'} >         
+                <Link to={'/checkout'} state={{id}}>         
        
                 <motion.button 
                   initial={{ opacity: 0, y: 20 }}

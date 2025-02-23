@@ -5,6 +5,8 @@ import { Slider } from '../dashboard/Slider';
 import { GlassCard } from '../dashboard/GlassCard';
 import { BarChart3, Users, ShoppingCart, TrendingUp } from 'lucide-react';
 import { DashboardCard } from './DashboardCard';
+import { useAppSelector } from '../redux/app/hook';
+import { selectCurrentUser } from '../redux/auth/authSlice';
 
 const sliderItems = [
   {
@@ -26,6 +28,8 @@ const sliderItems = [
 ];
 
 function DashboardMain() {
+  const user=useAppSelector(selectCurrentUser)
+  console.log(user)
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       <Sidebar />
@@ -43,8 +47,9 @@ function DashboardMain() {
                     className="w-16 h-16 rounded-full object-cover"
                   />
                   <div>
-                    <h1 className="text-white text-2xl font-bold">Welcome back, John!</h1>
-                    <p className="text-white/70">Here's what's happening with your store today.</p>
+                    <h1 className="text-white text-2xl font-bold">Welcome back, </h1>
+                    <p className="text-white/70">{user?.email}</p>
+                    <p className="text-white/70">{user?.role}</p>
                   </div>
                 </div>
               </GlassCard>
@@ -126,14 +131,15 @@ function DashboardMain() {
                           <p className="text-white/70 text-sm">user@example.com</p>
                         </div>
                       </div>
-                      <span className="px-2 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
+                     {/*  <span className="px-2 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm">
                         New
-                      </span>
+                      </span> */}
                     </div>
                   ))}
                 </div>
               </GlassCard>
             </div>
+            
           </div>
         </div>
       </main>
