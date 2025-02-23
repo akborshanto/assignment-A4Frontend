@@ -12,6 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { MainbaseApi } from "../auth/mainBaseApi";
+import { Order } from "../../dashboard/admin/bicycle.order";
 
 const persistConfig = {
   key: 'auth',
@@ -24,6 +25,7 @@ export const store = configureStore({
    
     [MainbaseApi.reducerPath]: MainbaseApi.reducer,
     auth: persistedAuthReducer,
+    order:Order
   },
   middleware: (getDefaultMiddlewares) =>
     getDefaultMiddlewares({

@@ -13,6 +13,10 @@ const authApi = MainbaseApi.injectEndpoints({
         body: userInfo,
       }),
     }),
+    // Get single bicycle by ID
+    getUserEmail: builder.query({
+      query: (id) => `/bicycle/${id}`,
+    }),
   }),
 });
 

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppSelector } from '../redux/app/hook';
 import { selectCurrentUser } from '../redux/auth/authSlice';
-import { useGetBicycleByIdQuery } from '../redux/api/baseApi/baseApi';
+import { useGetBicycleByIdQuery, useGetUserEmailQuery } from '../redux/api/baseApi/baseApi';
 import { CreditCard, ShoppingCart,  } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
@@ -10,11 +11,17 @@ import { useForm } from 'react-hook-form';
 
 export function Checkout() {
   const location = useLocation();
+  
   const user = useAppSelector(selectCurrentUser);
+  const { data: order, error, isLoading } = useGetUserEmailQuery(user?.email);
+
+  console.log(order);  // This will give you the actual data
+  
+
   const { id } = location.state || {}; 
   const { data: bike } = useGetBicycleByIdQuery(id);
 
-
+console.log(id)
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
 
@@ -78,7 +85,8 @@ console.log(user)
                   <input
                     type="text"
                     required
-                    defaultValue={user?.name || 'Akbor Shanto'}
+                    disabled={true}
+                    defaultValue={order?.data?.name }
                     className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-white/40 focus:outline-none"
                     {...register('name', { required: 'Name is required' })} 
                   />
@@ -90,6 +98,7 @@ console.log(user)
                   <input
                     type="text"
                     required
+                    disabled
                     defaultValue={user?.email}
                     className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-white/40 focus:outline-none"
                     {...register('email', { required: 'Email is required' })}
