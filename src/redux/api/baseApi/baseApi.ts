@@ -39,19 +39,22 @@ export const baseApi = MainbaseApi.injectEndpoints({
       }),
     }),
 
-    // Add an order
-    // addOrder: builder.mutation({
-    //   query: (orderData) => ({
-    //     url: "/order/create-order",
-    //     method: "POST",
-    //     body: orderData, 
-    //   }),
-    // }),
-    //order
+
        // Get single bicycle by ID
        getUserEmail: builder.query({
         query: (email) => `/user/data/${email}`,
       }),
+
+
+          // Add an order
+    addOrder: builder.mutation({
+      query: (orderData) => ({
+        url: "/order/create-order",
+        method: "POST",
+        body: orderData, 
+      }),
+    }),
+  
   }),
 });
 
@@ -62,6 +65,7 @@ export const {
   useGetBicyclesQuery,
   useGetBicycleByIdQuery,
   useAddBicycleMutation,
-  // useAddOrderMutation,
-  useGetUserEmailQuery
+
+  useGetUserEmailQuery,
+  useAddOrderMutation,
 } = baseApi;

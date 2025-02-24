@@ -1,38 +1,69 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../redux/app/hook';
 import { selectCurrentUser } from '../redux/auth/authSlice';
-import { useGetBicycleByIdQuery, useGetUserEmailQuery } from '../redux/api/baseApi/baseApi';
-import { CreditCard, ShoppingCart,  } from 'lucide-react';
+import { useAddOrderMutation, useGetBicycleByIdQuery, useGetUserEmailQuery } from '../redux/api/baseApi/baseApi';
+import { CreditCard, ShoppingCart } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-
-
+import toast from 'react-hot-toast';
 
 export function Checkout() {
   const location = useLocation();
-  
+  const navigate = useNavigate(); // Initialize the useNavigate hook
   const user = useAppSelector(selectCurrentUser);
   const { data: order, error, isLoading } = useGetUserEmailQuery(user?.email);
-
-  console.log(order);  // This will give you the actual data
-  
-
-  const { id } = location.state || {}; 
+  const { id } = location.state || {};
   const { data: bike } = useGetBicycleByIdQuery(id);
-
-console.log(id)
+  const [addData] = useAddOrderMutation(undefined);
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
+  // State to store quantity
+  const [quantity, setQuantity] = useState(1);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-  const onSubmit = (data: any) => {
-console.log(user)
-
-
- 
+  const incrementQuantity = () => {
+    setQuantity(prevQuantity => Math.min(bike?.stock || 1, prevQuantity + 1));
   };
 
+  const decrementQuantity = () => {
+    setQuantity(prevQuantity => Math.max(1, prevQuantity - 1));
+  };
 
+  const totalPrice = bike?.price * quantity || 0;
+
+  const onSubmit = async (data: any) => {
+    const orderData = {
+      userId: order?.data?._id,
+      products: [
+        {
+          bicycleId: id,
+          quantity,
+        },
+      ],
+      totalPrice,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+    };
+
+    try {
+      setIsButtonDisabled(true); // Disable the button while processing
+      await addData(orderData);
+      toast.success("Order successful 😍😍");
+      navigate('/'); // Redirect to the home page after order
+    } catch (error) {
+      toast.error('Order already completed');
+    } finally {
+      setIsButtonDisabled(false); // Re-enable the button after processing
+    }
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading data. Please try again later.</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gradient">
@@ -40,6 +71,7 @@ console.log(user)
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl font-bold text-white mb-8 flex items-center">
             <ShoppingCart className="mr-2" />
+            Checkout
           </h1>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -60,16 +92,14 @@ console.log(user)
                     <h3 className="font-semibold">{bike?.name}</h3>
                     <p className="text-sm opacity-80">${bike?.price.toFixed(2)}</p>
                     <p className="text-sm opacity-80">Stock: {bike?.stock}</p>
-                 
                   </div>
                 </div>
               </div>
 
               <div className="mt-6 pt-6 border-t border-white/20">
                 <div className="text-xl font-semibold">
-                  Total: ${bike?.price}
+                  Total: ${totalPrice.toFixed(2)}
                 </div>
-        
               </div>
             </div>
 
@@ -80,19 +110,20 @@ console.log(user)
               </h2>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                {/* Name field */}
                 <div>
                   <label className="block text-sm font-medium mb-1">Name</label>
                   <input
                     type="text"
                     required
                     disabled={true}
-                    defaultValue={order?.data?.name }
+                    defaultValue={order?.data?.name}
                     className="w-full px-4 py-2 rounded-lg bg-gray border border-white/20 focus:border-white/40 focus:outline-none"
-                    {...register('name', { required: 'Name is required' })} 
+                    {...register('name', { required: 'Name is required' })}
                   />
-{/*                   {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
- */}                </div>
+                </div>
 
+                {/* Email field */}
                 <div>
                   <label className="block text-sm font-medium mb-1">Email</label>
                   <input
@@ -106,35 +137,35 @@ console.log(user)
                   {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
                 </div>
 
+                {/* Quantity buttons */}
                 <div>
-                  <label className="block text-sm font-medium mb-1">Shipping Address</label>
-                  <textarea
-                    required
-                    className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-white/40 focus:outline-none"
-                    rows={3}
-                    {...register('address', { required: 'Address is required' })}
-                  ></textarea>
-                  {errors.address && <p className="text-red-500 text-sm">{errors.address.message}</p>}
+                  <label className="block text-sm text-white font-medium mb-1">Quantity</label>
+                  <div className="flex items-center space-x-4">
+                    <button
+                      type="button"
+                      onClick={decrementQuantity}
+                      className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600"
+                    >
+                      -
+                    </button>
+                    <span className="text-lg font-semibold">{quantity}</span>
+                    <button
+                      type="button"
+                      onClick={incrementQuantity}
+                      className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-1">Payment Method</label>
-                  <select
-                    className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-white/40 focus:outline-none"
-                    {...register('paymentMethod', { required: 'Please select a payment method' })}
-                  >
-                    <option value="credit">Credit Card</option>
-                    <option value="debit">Debit Card</option>
-                  </select>
-                  {errors.paymentMethod && <p className="text-red-500 text-sm">{errors.paymentMethod.message}</p>}
-                </div>
-
+                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full mt-6 bg-white text-[#4c4294] py-3 px-6 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
-                  disabled={bike?.price === 0}
+                  disabled={isButtonDisabled} // Disable the button after submission
+                  className={`w-full mt-6 bg-white text-[#4c4294] py-3 px-6 rounded-lg font-semibold hover:bg-opacity-90 transition-colors ${isButtonDisabled ? 'cursor-not-allowed opacity-50 bg-red-600' : ''}`}
                 >
-                  Order Now ${bike?.price.toFixed()}
+                  {isButtonDisabled ? 'Processing...' : `Order Now $${totalPrice.toFixed(2)}`}
                 </button>
               </form>
             </div>
