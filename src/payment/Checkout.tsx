@@ -87,11 +87,11 @@ console.log(user)
                     required
                     disabled={true}
                     defaultValue={order?.data?.name }
-                    className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-white/40 focus:outline-none"
+                    className="w-full px-4 py-2 rounded-lg bg-gray border border-white/20 focus:border-white/40 focus:outline-none"
                     {...register('name', { required: 'Name is required' })} 
                   />
-                  {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
-                </div>
+{/*                   {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+ */}                </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-1">Email</label>
@@ -100,7 +100,7 @@ console.log(user)
                     required
                     disabled
                     defaultValue={user?.email}
-                    className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-white/40 focus:outline-none"
+                    className="w-full px-4 py-2 rounded-lg bg-gray border border-white/20 focus:border-white/40 focus:outline-none"
                     {...register('email', { required: 'Email is required' })}
                   />
                   {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}

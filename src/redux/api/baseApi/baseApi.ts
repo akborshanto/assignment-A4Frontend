@@ -40,13 +40,13 @@ export const baseApi = MainbaseApi.injectEndpoints({
     }),
 
     // Add an order
-    addOrder: builder.mutation({
-      query: (orderData) => ({
-        url: "/order/create-order",
-        method: "POST",
-        body: orderData, 
-      }),
-    }),
+    // addOrder: builder.mutation({
+    //   query: (orderData) => ({
+    //     url: "/order/create-order",
+    //     method: "POST",
+    //     body: orderData, 
+    //   }),
+    // }),
     //order
        // Get single bicycle by ID
        getUserEmail: builder.query({
@@ -62,6 +62,6 @@ export const {
   useGetBicyclesQuery,
   useGetBicycleByIdQuery,
   useAddBicycleMutation,
-  useAddOrderMutation,
+  // useAddOrderMutation,
   useGetUserEmailQuery
 } = baseApi;
