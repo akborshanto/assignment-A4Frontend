@@ -23,6 +23,8 @@ import { Checkout } from './../payment/Checkout';
 import { User } from "../dashboard/user/User";
 import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import ProtectedRoutes from "../private/protector";
+import UpdateProfile from "../dashboard/user/updatePrifile";
+import UserAllOrder from './../dashboard/user/user.allOrder';
 
 export const router = createBrowserRouter([
   {
@@ -62,7 +64,14 @@ export const router = createBrowserRouter([
       { path: "/dashboard/admin", element: <Admin /> },
       { path: "/dashboard/bicycle-controller", element: <BicycleController /> },
       { path: "/dashboard/order", element: <Order /> },
+
+
+      /* dashboard user routes */
       { path: "/dashboard/user", element: <User /> },
+
+
+      { path: "/dashboard/user-profile", element: <UpdateProfile />  },
+      { path: "/dashboard/userOrder", element: <UserAllOrder/> },
      
     ],
   },

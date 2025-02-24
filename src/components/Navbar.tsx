@@ -46,6 +46,11 @@ const handleLogout=()=>{
                   <Link to="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md  text-lg font-medium">Home</Link>
                   <Link to="/all-Bicycle" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">All-Bicycle</Link>
                   <Link to="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</Link>
+                  {
+                    user &&    <Link to="/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Dashboard</Link>
+
+                  }
+
                 </div>
               </div>
             </div>

@@ -54,7 +54,7 @@ console.log(error)
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 text-white">
+    <div className=" inset-0 z-50 min-h-screen flex items-center justify-center bg-black bg-opacity-50 text-white">
       <div className="relative w-full max-w-md p-8 glass rounded-lg shadow-xl mx-4">
         <button
           onClick={onClose}

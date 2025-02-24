@@ -9,6 +9,8 @@ import {
   BarChart3,
   Bell,
   User,
+  ListOrdered,
+  User2Icon,
 } from "lucide-react";
 import { useAppSelector } from "../redux/app/hook";
 import { logout, selectCurrentUser } from "../redux/auth/authSlice";
@@ -46,7 +48,15 @@ export function Sidebar() {
 
     // Check for customer role
     ...(user?.role === "customer"
-      ? [{ icon: Users, label: "Users", path: "/", active: false }]
+      ? [
+        
+        { icon: Users, label: "Users", path: "/", active: false },
+        { icon:User2Icon, label: "Profile", path: "/dashboard/user-profile", active: false },
+        { icon: ListOrdered, label: "All Order", path: "/dashboard/userOrder", active: false },
+
+ 
+
+      ]
       : []),
   ];
 
