@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetBicycleByIdQuery } from "../../redux/api/baseApi/baseApi";
 import { motion } from "framer-motion";
+import { Loading } from "../../components/ui/loading";
 
 const BicycleDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +15,7 @@ const BicycleDetail = () => {
           animate={{ opacity: 1 }}
           className="text-center text-gray-600 text-lg backdrop-blur-md bg-white/30 p-6 rounded-2xl"
         >
-          Loading bicycle details...
+       <Loading></Loading>
         </motion.p>
       </div>
     );

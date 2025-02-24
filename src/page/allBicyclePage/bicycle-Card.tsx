@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import { Bike, ShoppingCart, Package, Tag } from "lucide-react";
 import { useGetBicyclesQuery } from "../../redux/api/baseApi/baseApi";
@@ -6,6 +8,7 @@ import { Loading } from "../../components/ui/loading";
 
 
 interface Bike {
+  [x: string]: any;
   id: string; // Add an id to the Bike type
   name: string;
   brand: string;

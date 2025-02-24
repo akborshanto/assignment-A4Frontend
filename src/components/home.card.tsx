@@ -3,6 +3,7 @@ import { Bike, Package, Tag } from 'lucide-react'
 import React from 'react'
 import { useGetTasksQuery } from '../redux/api/baseApi/baseApi';
 import { Loading } from './ui/loading';
+import { Link } from 'react-router-dom';
 
 const Card = () => {
   const { data: bikes, error, isLoading } = useGetTasksQuery(undefined);
@@ -49,6 +50,12 @@ const Card = () => {
                       <Package className="w-5 h-5 mr-2 text-purple-500" />
                       <span>{bike.stock} in stock</span>
                     </div>
+                    <Link
+                      to={`/all-Bicycle`} // Navigate to the detail page with the bicycle's ID
+                      className="mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300"
+                    >
+                All Bicycle
+                    </Link>
                   </div>
                 </div>
               </div>

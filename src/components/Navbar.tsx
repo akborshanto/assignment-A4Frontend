@@ -7,10 +7,13 @@ import { useDispatch } from 'react-redux';
 import { logout, selectCurrentUser } from '../redux/auth/authSlice';
 import toast from 'react-hot-toast';
 import { useAppSelector } from '../redux/app/hook';
+import { useGetUserEmailQuery } from '../redux/api/baseApi/baseApi';
 const Navbar = () => {
   const dispatch=useDispatch()
   const user = useAppSelector(selectCurrentUser);
-  console.log(user)
+  const { data} = useGetUserEmailQuery(user?.email);
+  
+console.log(data)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -89,6 +92,7 @@ const handleLogout=()=>{
         src="https://i.pravatar.cc/100" 
         alt="User Avatar"
         className="w-full h-full rounded-full border-4 border-gray-300"
+        
       />
       {/* Glasses Overlay */}
       <div className="absolute inset-0 flex items-center justify-center">

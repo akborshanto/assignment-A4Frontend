@@ -11,7 +11,6 @@ import { Error } from "../page/error/Error";
 
 import { AllBicyclePage, BicycleCard } from './../page/allBicyclePage/bicycle-Card';
 
-import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import { Admin } from "../dashboard/admin/admin";
 // import { User } from "../dashboard/user/User";
 
@@ -22,6 +21,8 @@ import { BicycleController } from "../dashboard/admin/bicycleController";
 import { Order } from './../dashboard/admin/bicycle.order';
 import { Checkout } from './../payment/Checkout';
 import { User } from "../dashboard/user/User";
+import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
+import ProtectedRoutes from "../private/protector";
 
 export const router = createBrowserRouter([
   {
@@ -34,8 +35,14 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/all-Bicycle", element: <AllBicyclePage /> },
       { path: "/about", element: <AboutPage/> },
-      { path: "/checkout", element: <Checkout /> },
-      { path: "/detail/:id", element: <BicycleDetail /> }
+      { path: "/checkout", element: 
+<ProtectedRoutes><Checkout /></ProtectedRoutes>
+
+       },
+      { path: "/detail/:id", element: 
+      <ProtectedRoutes> <BicycleDetail /></ProtectedRoutes>
+      
+      }
 
     ],
   },

@@ -46,7 +46,7 @@ export function Sidebar() {
 
     // Check for customer role
     ...(user?.role === "customer"
-      ? [{ icon: Users, label: "Users", path: "/dashboard/user", active: false }]
+      ? [{ icon: Users, label: "Users", path: "/", active: false }]
       : []),
   ];
 
