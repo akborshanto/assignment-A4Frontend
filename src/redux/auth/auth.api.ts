@@ -17,7 +17,12 @@ const authApi = MainbaseApi.injectEndpoints({
     getUserEmail: builder.query({
       query: (id) => `/bicycle/${id}`,
     }),
+    //get all user for dashboard
+    getALlUser: builder.query({
+      query: () => "/user",
+    }),
+
   }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation ,useGetALlUserQuery} = authApi;

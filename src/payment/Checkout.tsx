@@ -49,7 +49,7 @@ export function Checkout() {
       setIsButtonDisabled(true); // Disable the button while processing
       await addData(orderData);
       toast.success("Order successful 😍😍");
-      navigate('/'); // Redirect to the home page after order
+      navigate('/dashboard/userOrder'); // Redirect to the home page after order
     } catch (error) {
       toast.error('Order already completed');
     } finally {

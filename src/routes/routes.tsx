@@ -11,20 +11,24 @@ import { Error } from "../page/error/Error";
 
 import { AllBicyclePage, BicycleCard } from './../page/allBicyclePage/bicycle-Card';
 
-import { Admin } from "../dashboard/admin/admin";
+
 // import { User } from "../dashboard/user/User";
 
 import BicycleDetail from "../page/bicycleDetail/BicycleDetail";
 import { AboutPage } from './../page/about/about';
 import Register from "../components/auth/Register";
 import { BicycleController } from "../dashboard/admin/bicycleController";
-import { Order } from './../dashboard/admin/bicycle.order';
+
 import { Checkout } from './../payment/Checkout';
 import { User } from "../dashboard/user/User";
 import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import ProtectedRoutes from "../private/protector";
 import UpdateProfile from "../dashboard/user/updatePrifile";
-import UserAllOrder from './../dashboard/user/user.allOrder';
+// import UserAllOrder from './../dashboard/user/user.allOrder';
+import UserOrderDetail from "../dashboard/user/user.order.detail";
+import OrderManagement from "../dashboard/admin/bicycle.order";
+import { UserManagement } from "../dashboard/admin/user.management";
+import AdminProfile from "../dashboard/admin/admin.profile";
 
 export const router = createBrowserRouter([
   {
@@ -61,17 +65,20 @@ export const router = createBrowserRouter([
          },
 
 
-      { path: "/dashboard/admin", element: <Admin /> },
+    //  ,
       { path: "/dashboard/bicycle-controller", element: <BicycleController /> },
-      { path: "/dashboard/order", element: <Order /> },
-
+      // { path: "/dashboard/order", element: <Order /> },
+      { path: "/dashboard/orderManagement", element: <OrderManagement/> },
+      { path: "/dashboard/UserManagement", element: <UserManagement/> },
+      { path: "/dashboard/admin-profile", element: <AdminProfile/> },
 
       /* dashboard user routes */
       { path: "/dashboard/user", element: <User /> },
 
 
       { path: "/dashboard/user-profile", element: <UpdateProfile />  },
-      { path: "/dashboard/userOrder", element: <UserAllOrder/> },
+  
+      { path: "/dashboard/userOrderDetail", element: <UserOrderDetail/> },
      
     ],
   },

@@ -7,6 +7,7 @@ import { BarChart3, Users, ShoppingCart, TrendingUp } from 'lucide-react';
 import { DashboardCard } from './DashboardCard';
 import { useAppSelector } from '../redux/app/hook';
 import { selectCurrentUser } from '../redux/auth/authSlice';
+import { useGetOrderIdQuery } from '../redux/api/baseApi/baseApi';
 
 const sliderItems = [
   {
@@ -28,8 +29,13 @@ const sliderItems = [
 ];
 
 function DashboardMain() {
-  const user=useAppSelector(selectCurrentUser)
-  console.log(user)
+  const user = useAppSelector(selectCurrentUser);
+
+  const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
+  console.log(data)
+  
+  console.log(data, error, isLoading);
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       <Sidebar />
@@ -48,6 +54,7 @@ function DashboardMain() {
                   />
                   <div>
                     <h1 className="text-white text-2xl font-bold">Welcome back, </h1>
+                    <p className="text-white/70">{user?.name}</p>
                     <p className="text-white/70">{user?.email}</p>
                     <p className="text-white/70">{user?.role}</p>
                   </div>

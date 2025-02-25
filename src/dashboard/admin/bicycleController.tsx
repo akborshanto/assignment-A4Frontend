@@ -6,12 +6,12 @@ import { Loading } from "../../components/ui/loading";
 import BallsLoading from "../../components/ui/balls.loading";
 
 export const BicycleController = () => {
-  const [addData, { isLoading ,isSuccess}] = useAddBicycleMutation();
+  const [addData, { isLoading }] = useAddBicycleMutation();
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [imageUploading, setImageUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
 
-  const imgBB_API_KEY = "a7c1b646d9d84adbad01ccc764183aa2"; // Replace with your actual API key
+  const imgBB_API_KEY = "77c6d8c4d5d9efed6090b118cb18fe34"; // Replace with your actual API key
 
   const uploadImageToImgBB = async (file) => {
     const formData = new FormData();
@@ -30,11 +30,12 @@ export const BicycleController = () => {
         setImageUrl(data.data.url);
         return data.data.url;
       } else {
-        alert("Image upload failed!");
+        toast.error("Image upload failed!");
         return null;
       }
     } catch (error) {
       console.error("Error uploading image:", error);
+      toast.error("Error uploading image!");
       return null;
     } finally {
       setImageUploading(false);
@@ -43,24 +44,23 @@ export const BicycleController = () => {
 
   const onSubmit = async (data) => {
     if (!imageUrl) {
-      alert("Please upload an image first!");
+      toast.error("Please upload an image first!");
       return;
     }
 
     const bicycleData = { ...data, photo: imageUrl };
-    if(isLoading){
-        return <Loading></Loading>
-    }
-    await addData(bicycleData);
-    if(isSuccess){
-        toast.success('Bicycle created successfully')
-        reset();
-        setImageUrl("");
-        return null
-    }
- 
-  };
 
+    try {
+      const response = await addData(bicycleData).unwrap();
+      if (response) {
+        toast.success("Bicycle created successfully!");
+        reset();
+        setImageUrl(""); 
+      }
+    } catch (error) {
+      toast.error("Failed to create bicycle!");
+    }
+  };
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg">
@@ -136,10 +136,8 @@ export const BicycleController = () => {
             }}
             className="mt-1 block w-full px-3 py-2 border rounded-md"
           />
-          {imageUploading && <p className="text-blue-500 text-sm"><BallsLoading></BallsLoading></p>}
-          {imageUrl && (
-            <p className="text-green-500 text-sm">Image uploaded successfully!</p>
-          )}
+          {imageUploading && <p className="text-blue-500 text-sm"><BallsLoading /></p>}
+          {imageUrl && <p className="text-green-500 text-sm">Image uploaded successfully!</p>}
         </div>
 
         {/* Submit Button */}
