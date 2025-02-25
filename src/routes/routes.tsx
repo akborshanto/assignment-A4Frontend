@@ -29,6 +29,7 @@ import UserOrderDetail from "../dashboard/user/user.order.detail";
 import OrderManagement from "../dashboard/admin/bicycle.order";
 import { UserManagement } from "../dashboard/admin/user.management";
 import AdminProfile from "../dashboard/admin/admin.profile";
+import Transaction from "../dashboard/admin/admin.transiciton";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,7 @@ export const router = createBrowserRouter([
       { path: "/dashboard/orderManagement", element: <OrderManagement/> },
       { path: "/dashboard/UserManagement", element: <UserManagement/> },
       { path: "/dashboard/admin-profile", element: <AdminProfile/> },
+      { path: "/dashboard/transactions", element: <Transaction/> },
 
       /* dashboard user routes */
       { path: "/dashboard/user", element: <User /> },
