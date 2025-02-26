@@ -34,9 +34,9 @@ export function Sidebar() {
     );
   } else if (user?.role === "customer") {
     menuItems.push(
-    /*   { icon: Users, label: "All User", path: "/dashboard" },
+
       { icon: User2Icon, label: "Profile", path: "/dashboard/user-profile" },
-      { icon: ListOrdered, label: "", path: "/dashboard/userOrder" }, */
+      { icon: ListOrdered, label: "Your Order", path: "/dashboard/UserOrderDetail" },
   
     );
   }

@@ -7,7 +7,7 @@ import { selectCurrentUser } from '../../redux/auth/authSlice';
 
 const OrderManagement = () => {
     const user = useAppSelector(selectCurrentUser);
-  
+  console.log(user)
     const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
   
     console.log(data, error, isLoading);

@@ -144,12 +144,14 @@ console.log(error)
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
+            <Link to={'/register'}>
             <button
               onClick={onSwitchToRegister}
               className="text-blue-600 hover:text-blue-500 font-medium"
             >
               Sign up
             </button>
+            </Link>
           </p>
         </div>
       </div>

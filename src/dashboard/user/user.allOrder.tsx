@@ -10,7 +10,7 @@ const UserAllOrder = () => {
   
     const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
   
-    console.log(data, error, isLoading);
+
 
     return (
         <div className="w-full h-full items-center ">
