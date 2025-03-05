@@ -13,7 +13,7 @@ const Navbar = () => {
   const user = useAppSelector(selectCurrentUser);
   const { data} = useGetUserEmailQuery(user?.email);
   
-console.log(user.photo)
+// console.log(user.photo)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
