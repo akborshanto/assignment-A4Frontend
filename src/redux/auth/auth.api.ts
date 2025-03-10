@@ -17,15 +17,26 @@ const authApi = MainbaseApi.injectEndpoints({
     getUserEmail: builder.query({
       query: (id) => `/bicycle/${id}`,
     }),
+
+    //get single use Id
     getSingleUserId: builder.query({
       query: (id) => `/user/${id}`,
     }),
     //get all user for dashboard
     getALlUser: builder.query({
       query: () => "/user",
-    }),
+      providesTags: ["User"], // Ensure consistency in tag names
 
+    }),
+//delte user Id
+deleteUser: builder.mutation({
+  query: (id) => ({
+    url: `/user/${id}`,
+    method: "DELETE",
+  }),
+  invalidatesTags: ["User"], // Ensures data is refreshed after deletion
+}),
   }),
 });
 
-export const { useLoginMutation ,useGetALlUserQuery,useGetSingleUserIdQuery} = authApi;
+export const { useLoginMutation ,useGetALlUserQuery,useGetSingleUserIdQuery,useDeleteUserMutation} = authApi;

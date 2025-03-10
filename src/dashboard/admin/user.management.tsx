@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGetALlUserQuery } from "../../redux/auth/auth.api";
+import { useDeleteUserMutation, useGetALlUserQuery } from "../../redux/auth/auth.api";
 import { GlassCard } from "../GlassCard";
 import {
   ShoppingCart,
@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useGetBicycleByIdQuery } from "../../redux/api/baseApi/baseApi";
 import { Loading } from "../../components/ui/loading";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 interface User {
   _id: string;
@@ -26,7 +27,18 @@ interface User {
 
 export const UserManagement = () => {
   const { data, error, isLoading } = useGetALlUserQuery(undefined);
+  const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
 
+  const handleDelete = async (userId: string) => {
+    try {
+      await deleteUser(userId).unwrap();
+      toast.success("successfully deleted")
+      // console.log(`User ${userId} deleted successfully`);
+    } catch (err) {
+toast.error('something deleting error')
+    }
+  };
+  
   return (
     <div className="w-full h-screen overflow-auto">
       <GlassCard title="User Management">
@@ -69,11 +81,12 @@ export const UserManagement = () => {
                   </Link>
 
                   <button
-                    onClick={() => console.log("Delete user:", user._id)}
+                   onClick={() => handleDelete(user._id)}
                     className="px-3 py-1.5 rounded-lg bg-red-500/20 border border-red-500/30 text-red-300 hover:bg-red-500/30 transition"
                   >
                     <Trash2 className="w-4 h-4" />
                     <span className="text-sm">Delete</span>
+                    {/* <span className="text-sm">{isDeleting ? "Deleting..." : "Delete"}</span> */}
                   </button>
                 </div>
               </div>
