@@ -14,9 +14,16 @@ const authApi = MainbaseApi.injectEndpoints({
       }),
     }),
     // Get single bicycle by ID
+    // getUserEmail: builder.query({
+    //   query: (id) => `/bicycle/${id}`,
+    // }),
     getUserEmail: builder.query({
-      query: (id) => `/bicycle/${id}`,
+      query: (email) => {
+        console.log(email); 
+        return `/user/email/${email}`;
+      },
     }),
+    
 
     //get single use Id
     getSingleUserId: builder.query({
@@ -39,4 +46,4 @@ deleteUser: builder.mutation({
   }),
 });
 
-export const { useLoginMutation ,useGetALlUserQuery,useGetSingleUserIdQuery,useDeleteUserMutation} = authApi;
+export const { useLoginMutation ,useGetALlUserQuery,useGetSingleUserIdQuery,useDeleteUserMutation,useGetUserEmailQuery} = authApi;

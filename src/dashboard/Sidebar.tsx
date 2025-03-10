@@ -30,7 +30,7 @@ export function Sidebar() {
       { icon: BarChart3, label: "Product Management", path: "/dashboard/bicycle-controller" },
       { icon: Users, label: "User Management", path: "/dashboard/UserManagement" },
       { icon: ListOrdered, label: "All Transactions", path: "/dashboard/transactions" },
-      { icon: User, label: " Profile", path: "/dashboard/admin-profile" }
+      { icon: User, label: "Admin Profile", path: "/dashboard/admin-profile" }
     );
   } else if (user?.role === "customer") {
     menuItems.push(

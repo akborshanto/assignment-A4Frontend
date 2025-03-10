@@ -54,6 +54,12 @@ export const baseApi = MainbaseApi.injectEndpoints({
         body: orderData, 
       }),
     }),
+    // all bicycle
+    getAllOrder: builder.query({
+      query: () => "/order",
+      
+
+    }),
          // Get single order by ID
          getOrderId: builder.query({
           query: (orderId) => `/order/${orderId}`,
@@ -75,5 +81,7 @@ export const {
 
   useGetUserEmailQuery,
   useAddOrderMutation,
-  useGetOrderIdQuery
+  useGetOrderIdQuery,
+  useGetAllOrderQuery
+
 } = baseApi;

@@ -1,7 +1,15 @@
 import React from 'react'
 import { motion } from 'framer-motion';
+import { useGetUserEmailQuery } from '../../redux/auth/auth.api';
+import { useAppSelector } from '../../redux/app/hook';
+import { selectCurrentUser } from '../../redux/auth/authSlice';
 
 const AdminProfile = () => {
+const user = useAppSelector(selectCurrentUser);
+console.log(user)
+const {data}=useGetUserEmailQuery(user?.email)
+
+console.log(data?.email)
   return (
     <div>    <div>    <div className=" inset-0 overflow-y-auto min-h-screen ">
     {/* Animated background gradients */}
@@ -43,7 +51,7 @@ const AdminProfile = () => {
             className="text-5xl font-bold text-gray-800 mb-12 text-center"
           >
            {/*  {bike.name} */}
-           name
+           {data?.name}
           </motion.h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -83,7 +91,7 @@ const AdminProfile = () => {
                   className="flex items-center text-gray-700"
                 >
                   <span className="text-2xl font-semibold backdrop-blur-sm bg-white/30 px-6 py-3 rounded-lg hover:bg-white/40 transition-colors">
-                    EMail
+                  {data?.name}
                   </span>
                 </motion.div>
 
@@ -94,7 +102,7 @@ const AdminProfile = () => {
                   className="flex items-center text-gray-600"
                 >
                   <span className="text-xl backdrop-blur-sm bg-white/30 px-6 py-3 rounded-lg hover:bg-white/40 transition-colors">
-                 Name 
+                 {data?.name}
                   </span>
                 </motion.div>
               </div>

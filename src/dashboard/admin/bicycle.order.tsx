@@ -1,15 +1,17 @@
 import React from 'react';
 import { GlassCard } from './../GlassCard';
 import { ShoppingCart } from 'lucide-react';
-import { useGetOrderIdQuery } from '../../redux/api/baseApi/baseApi';
+import { useGetAllOrderQuery, useGetOrderIdQuery } from '../../redux/api/baseApi/baseApi';
 import { useAppSelector } from '../../redux/app/hook';
 import { selectCurrentUser } from '../../redux/auth/authSlice';
 
 const OrderManagement = () => {
     const user = useAppSelector(selectCurrentUser);
-  console.log(user)
-    const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
   
+    const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
+    const { data:allOrder } = useGetAllOrderQuery(undefined);
+    console.log(allOrder)
+  console.log(data)
     console.log(data, error, isLoading);
 
     return (
@@ -20,8 +22,8 @@ const OrderManagement = () => {
                 <div className="space-y-4">
                     {isLoading && <p className="text-white">Loading...</p>}
                     {error && <p className="text-red-500">Error fetching orders.</p>}
-                    {data?.length > 0 ? (
-                        data.map((order, index) => (
+                    {allOrder?.length > 0 ? (
+                        allOrder?.map((order, index) => (
                             <div key={order._id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
