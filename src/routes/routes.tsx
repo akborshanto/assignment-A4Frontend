@@ -1,25 +1,25 @@
 import { createBrowserRouter } from "react-router-dom";
 
-
 import Home from "../page/home/Home";
 import Login from "../components/auth/Login";
-
 
 import DashboardMain from "../dashboard/DashboardMain";
 import { Root } from "../Root/Root";
 import { Error } from "../page/error/Error";
 
-import { AllBicyclePage, BicycleCard } from './../page/allBicyclePage/bicycle-Card';
-
+import {
+  AllBicyclePage,
+  BicycleCard,
+} from "./../page/allBicyclePage/bicycle-Card";
 
 // import { User } from "../dashboard/user/User";
 
 import BicycleDetail from "../page/bicycleDetail/BicycleDetail";
-import { AboutPage } from './../page/about/about';
+import { AboutPage } from "./../page/about/about";
 import Register from "../components/auth/Register";
 import { BicycleController } from "../dashboard/admin/bicycleController";
 
-import { Checkout } from './../payment/Checkout';
+import { Checkout } from "./../payment/Checkout";
 import { User } from "../dashboard/user/User";
 import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import ProtectedRoutes from "../private/protector";
@@ -30,6 +30,8 @@ import OrderManagement from "../dashboard/admin/bicycle.order";
 import { UserManagement } from "../dashboard/admin/user.management";
 import AdminProfile from "../dashboard/admin/admin.profile";
 import Transaction from "../dashboard/admin/admin.transiciton";
+import { UserDetailAdmin } from "../dashboard/admin/admin.userMnagement.detailPage";
+import { UserDetail } from "../dashboard/admin/user.mangement.modal";
 
 export const router = createBrowserRouter([
   {
@@ -41,16 +43,24 @@ export const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/all-Bicycle", element: <AllBicyclePage /> },
-      { path: "/about", element: <AboutPage/> },
-      { path: "/checkout", element: 
-<ProtectedRoutes><Checkout /></ProtectedRoutes>
-
-       },
-      { path: "/detail/:id", element: 
-      <ProtectedRoutes> <BicycleDetail /></ProtectedRoutes>
-      
-      }
-
+      { path: "/about", element: <AboutPage /> },
+      {
+        path: "/checkout",
+        element: (
+          <ProtectedRoutes>
+            <Checkout />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/detail/:id",
+        element: (
+          <ProtectedRoutes>
+            {" "}
+            <BicycleDetail />
+          </ProtectedRoutes>
+        ),
+      },
     ],
   },
 
@@ -59,31 +69,26 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <DashboardLayout />, // ✅ Navbar & Footer নেই
     children: [
-      { path: "/dashboard", element:
-  
-        <DashboardMain />
-        
-         },
-
-
-    //  ,
+      { path: "/dashboard", element: <DashboardMain /> },
+ //dashboard add userDetail
+      { path: "/dashboard/admin-user-detail/:id", element: <UserDetail /> },
+      //  ,
       { path: "/dashboard/bicycle-controller", element: <BicycleController /> },
       // { path: "/dashboard/order", element: <Order /> },
-      { path: "/dashboard/orderManagement", element: <OrderManagement/> },
-      { path: "/dashboard/UserManagement", element: <UserManagement/> },
-      { path: "/dashboard/admin-profile", element: <AdminProfile/> },
-      { path: "/dashboard/transactions", element: <Transaction/> },
+      { path: "/dashboard/orderManagement", element: <OrderManagement /> },
+      { path: "/dashboard/UserManagement", element: <UserManagement /> },
+       //dashboard add userDetail
+       { path: "/dashboard/admin-user-detail/:id", element: <UserDetail /> },
+      { path: "/dashboard/admin-profile", element: <AdminProfile /> },
+      { path: "/dashboard/transactions", element: <Transaction /> },
 
       /* dashboard user routes */
       { path: "/dashboard/user", element: <User /> },
 
+      { path: "/dashboard/user-profile", element: <UpdateProfile /> },
 
-      { path: "/dashboard/user-profile", element: <UpdateProfile />  },
-  
-      { path: "/dashboard/userOrderDetail", element: <UserOrderDetail/> },
+      { path: "/dashboard/userOrderDetail", element: <UserOrderDetail /> },
      
     ],
   },
 ]);
-
-
