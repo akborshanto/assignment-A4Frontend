@@ -36,7 +36,7 @@ export function Sidebar() {
     menuItems.push(
 
       { icon: User2Icon, label: "Profile", path: "/dashboard/user-profile" },
-      { icon: ListOrdered, label: "Your Order", path: "/dashboard/UserOrderDetail" },
+      { icon: ListOrdered, label: "Your Order", path: "/dashboard/userOrder" },
   
     );
   }

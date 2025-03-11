@@ -57,12 +57,12 @@ const RegisterForm = () => {
       ...data,
       photo,
     };
-console.log(payload)
+
     try {
       await addData(payload).unwrap();
       reset();
       toast.success("User created successfully!");
-      navigate('/');
+      navigate('/login');
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error('Something went wrong...');

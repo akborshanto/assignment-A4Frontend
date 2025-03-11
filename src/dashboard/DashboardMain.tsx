@@ -32,9 +32,7 @@ function DashboardMain() {
   const user = useAppSelector(selectCurrentUser);
 
   const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
-  console.log(data)
-  
-  console.log(data, error, isLoading);
+
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">

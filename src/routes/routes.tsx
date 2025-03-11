@@ -38,7 +38,7 @@ import { UpdateProfile } from "../dashboard/user/updatePrifile";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />, // ✅ Navbar & Footer থাকবে
+    element: <Root />, 
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
@@ -91,7 +91,7 @@ export const router = createBrowserRouter([
 
       { path: "/dashboard/user-profile", element: <UpdateProfile /> },
 
-      { path: "/dashboard/userOrderDetail", element: <UserOrderDetail /> },
+      { path: "/dashboard/userOrder", element: <UserOrderDetail /> },
      
     ],
   },

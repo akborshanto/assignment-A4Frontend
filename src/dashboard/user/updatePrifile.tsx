@@ -70,7 +70,7 @@ export const  UpdateProfile =()=> {
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-white">About Me</h2>
                 <p className="text-white/80 leading-relaxed">
-                  Passionate software engineer with over 8 years of experience in full-stack development.
+                  Passionate Mern Stack Developer  with over 2 years of experience in full-stack development.
                   Specialized in building scalable web applications and mentoring junior developers.
                   Always excited to learn new technologies and solve complex problems.
                 </p>
