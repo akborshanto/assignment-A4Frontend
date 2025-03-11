@@ -3,7 +3,7 @@ import { Bike, ShoppingCart,  Menu, X } from 'lucide-react';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectCurrentUser } from '../redux/auth/authSlice';
 import toast from 'react-hot-toast';
 import { useAppSelector } from '../redux/app/hook';
@@ -29,6 +29,12 @@ const handleLogout=()=>{
   }
   
 }
+
+//add to card
+const cartItemCount = useSelector((state) =>
+  state.cart.cartItems.reduce((total, item) => total + item.quantity, 0)
+);
+
   return (
     <>
       <nav className="fixed w-full z-50 glass ">
@@ -57,8 +63,15 @@ const handleLogout=()=>{
             <div className="hidden md:block">
               <div className="ml-4 flex items-center gap-4">
                 <button className="p-2 rounded-full hover:bg-blue-100 text-gray-700 relative">
-                  <ShoppingCart className="h-5 w-5" />
-                  <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                <Link to="/cart" className="relative">
+        <ShoppingCart></ShoppingCart>
+        {cartItemCount > 0 && (
+          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-sm px-2 rounded-full">
+            {cartItemCount}
+          </span>
+        )}
+      </Link>
+                  
                 </button>
 {/* user base login and signup and logout */}
 

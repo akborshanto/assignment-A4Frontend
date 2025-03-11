@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, Tag, Truck, Shield, Quote, ThumbsUp, Camera, MessageCircle } from 'lucide-react';
 import { Button } from './ui/aboutButton';
+import { useDispatch } from 'react-redux';
+import { addToCart } from "../redux/cardSlice/cartslice";
+import { useGetTasksQuery } from '../redux/api/baseApi/baseApi';
 const customerReviews = [
   {
     id: 1,
@@ -69,6 +72,9 @@ const specialOffers = [
 ];
 
 export const Testimonials = () => {
+    const { data: bikes } = useGetTasksQuery(undefined);
+  
+  const dispatch = useDispatch();
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
 
@@ -228,10 +234,17 @@ export const Testimonials = () => {
                       <p className="text-sm text-gray-500 mb-4">
                         Offer ends: {new Date(offer.endDate).toLocaleDateString()}
                       </p>
-                      <Button >
-                        Shop Now
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                      <Button
+                      onClick={() => {
+                        // Dispatch the addToCart action for each bike when the "Shop Now" button is clicked
+                        if (bikes && bikes.length > 0) {
+                          dispatch(addToCart(bikes[0]._id)); // Assuming you're adding the first bike, adjust as needed
+                        }
+                      }}
+                    >
+                      Shop Now
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
                     </div>
                   </div>
                 </div>

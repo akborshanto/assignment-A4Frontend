@@ -23,7 +23,7 @@ import { Checkout } from "./../payment/Checkout";
 import { User } from "../dashboard/user/User";
 import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import ProtectedRoutes from "../private/protector";
-import UpdateProfile from "../dashboard/user/updatePrifile";
+
 // import UserAllOrder from './../dashboard/user/user.allOrder';
 import UserOrderDetail from "../dashboard/user/user.order.detail";
 import OrderManagement from "../dashboard/admin/bicycle.order";
@@ -32,6 +32,8 @@ import AdminProfile from "../dashboard/admin/admin.profile";
 import Transaction from "../dashboard/admin/admin.transiciton";
 import { UserDetailAdmin } from "../dashboard/admin/admin.userMnagement.detailPage";
 import { UserDetail } from "../dashboard/admin/user.mangement.modal";
+import CartPage from "../components/catItem/cardItem";
+import { UpdateProfile } from "../dashboard/user/updatePrifile";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,8 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/all-Bicycle", element: <AllBicyclePage /> },
       { path: "/about", element: <AboutPage /> },
+      //cart page
+      { path: "/cart", element: <CartPage /> },
       {
         path: "/checkout",
         element: (
