@@ -4,8 +4,9 @@ import Card from '../../components/home.card';
 import { useAppSelector } from '../../redux/app/hook';
 import { selectCurrentUser } from '../../redux/auth/authSlice';
 import { Testimonials } from '../../components/Testimonials';
-import { SubscribeForm } from '../../components/subscribeform';
-import { Banner } from '../../components/Banner';
+// import { SubscribeForm } from '../../components/subscribeform';
+
+import { Banner } from './../../components/Banner';
 
 const Home = () => {
   const user = useAppSelector(selectCurrentUser);

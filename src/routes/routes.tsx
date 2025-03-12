@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Home from "../page/home/Home";
-import Login from "../components/auth/Login";
+
 import DashboardMain from "../dashboard/DashboardMain";
 import { Root } from "../Root/Root";
 import { Error } from "../page/error/Error";
@@ -19,11 +19,13 @@ import ProtectedRoutes from "../private/protector";
 import UserOrderDetail from "../dashboard/user/user.order.detail";
 import OrderManagement from "../dashboard/admin/bicycle.order";
 import { UserManagement } from "../dashboard/admin/user.management";
-import AdminProfile from "../dashboard/admin/admin.profile";
+
 import Transaction from "../dashboard/admin/admin.transiciton";
 import { UserDetail } from "../dashboard/admin/user.mangement.modal";
 import CartPage from "../components/catItem/cardItem";
 import { UpdateProfile } from "../dashboard/user/updatePrifile";
+import Login from './../components/auth/Login';
+import { AdminProfile } from "../dashboard/admin/admin.profile";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +34,7 @@ export const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/login", element: <Login /> },
+      { path: "/login", element: <Login/> },
       { path: "/register", element: <Register /> },
       { path: "/all-Bicycle", element: <AllBicyclePage /> },
       { path: "/about", element: <AboutPage /> },

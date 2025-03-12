@@ -7,8 +7,7 @@ import { BarChart3, Users, ShoppingCart, TrendingUp } from 'lucide-react';
 import { DashboardCard } from './DashboardCard';
 import { useAppSelector } from '../redux/app/hook';
 import { selectCurrentUser } from '../redux/auth/authSlice';
-import { useGetOrderIdQuery } from '../redux/api/baseApi/baseApi';
-
+import { useGetAllStatsQuery } from '../redux/api/baseApi/baseApi';
 const sliderItems = [
   {
     image: 'https://i.ibb.co.com/5XjkyGTh/pexels-davidmcbee-255934.jpg',
@@ -31,9 +30,11 @@ const sliderItems = [
 function DashboardMain() {
   const user = useAppSelector(selectCurrentUser);
 
-  const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
+  //const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
+  const { data, } = useGetAllStatsQuery(undefined);
+  console.log(data)
 
-  
+  console.log(data)
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       <Sidebar />
