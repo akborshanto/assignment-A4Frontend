@@ -10,17 +10,8 @@ const BicycleDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        backgroundAttachment: "fixed"
-      }}>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="backdrop-blur-xl bg-white/10 p-8 rounded-2xl shadow-xl border border-white/20"
-        >
-          <Loading />
-        </motion.div>
+      <div>
+        <Loading />
       </div>
     );
   }

@@ -41,17 +41,17 @@ const Home = () => {
             <Testimonials />
           </div>
 
-          <div className="backdrop-blur-xl bg-white/10 rounded-3xl p-8 shadow-xl border border-white/20">
+          {/* <div className="backdrop-blur-xl bg-white/10 rounded-3xl p-8 shadow-xl border border-white/20">
             <SubscribeForm />
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Gradient overlay at the bottom */}
-      <div 
+      {/* <div 
         className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-purple-900/50 to-transparent pointer-events-none"
         style={{ backdropFilter: 'blur(5px)' }}
-      ></div>
+      ></div> */}
     </div>
   );
 };
