@@ -6,10 +6,10 @@ import { selectCurrentUser } from '../../redux/auth/authSlice';
 
 const AdminProfile = () => {
 const user = useAppSelector(selectCurrentUser);
-console.log(user)
+
 const {data}=useGetUserEmailQuery(user?.email)
 
-console.log(data?.email)
+
   return (
     <div>    <div>    <div className=" inset-0 overflow-y-auto min-h-screen ">
     {/* Animated background gradients */}

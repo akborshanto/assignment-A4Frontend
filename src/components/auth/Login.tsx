@@ -36,14 +36,14 @@ try {
   const res = await login(data).unwrap();
    
       const user = verifyToken(res.token);
-      // console.log(user.role)
+      
       dispatch(setUser({ user, token: res.token }));
  // Navigate to the corresponding dashboard based on the user's role
 navigate(`/dashboard`);
 toast.success("Successfully login😍")
 } catch (error) {
   
-console.log(error)
+toast.error("something error")
 
 }
       

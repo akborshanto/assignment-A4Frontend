@@ -2,35 +2,25 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Home from "../page/home/Home";
 import Login from "../components/auth/Login";
-
 import DashboardMain from "../dashboard/DashboardMain";
 import { Root } from "../Root/Root";
 import { Error } from "../page/error/Error";
 
-import {
-  AllBicyclePage,
-  BicycleCard,
-} from "./../page/allBicyclePage/bicycle-Card";
-
-// import { User } from "../dashboard/user/User";
-
+import { AllBicyclePage } from "../page/allBicyclePage/bicycle-Card";
 import BicycleDetail from "../page/bicycleDetail/BicycleDetail";
-import { AboutPage } from "./../page/about/about";
+import { AboutPage } from "../page/about/about";
 import Register from "../components/auth/Register";
 import { BicycleController } from "../dashboard/admin/bicycleController";
 
-import { Checkout } from "./../payment/Checkout";
+import { Checkout } from "../payment/Checkout";
 import { User } from "../dashboard/user/User";
 import DashboardLayout from "../dashboard/dashboardLayout/dLayout";
 import ProtectedRoutes from "../private/protector";
-
-// import UserAllOrder from './../dashboard/user/user.allOrder';
 import UserOrderDetail from "../dashboard/user/user.order.detail";
 import OrderManagement from "../dashboard/admin/bicycle.order";
 import { UserManagement } from "../dashboard/admin/user.management";
 import AdminProfile from "../dashboard/admin/admin.profile";
 import Transaction from "../dashboard/admin/admin.transiciton";
-import { UserDetailAdmin } from "../dashboard/admin/admin.userMnagement.detailPage";
 import { UserDetail } from "../dashboard/admin/user.mangement.modal";
 import CartPage from "../components/catItem/cardItem";
 import { UpdateProfile } from "../dashboard/user/updatePrifile";
@@ -38,7 +28,7 @@ import { UpdateProfile } from "../dashboard/user/updatePrifile";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />, 
+    element: <Root />,
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
@@ -46,8 +36,8 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/all-Bicycle", element: <AllBicyclePage /> },
       { path: "/about", element: <AboutPage /> },
-      //cart page
       { path: "/cart", element: <CartPage /> },
+
       {
         path: "/checkout",
         element: (
@@ -60,7 +50,6 @@ export const router = createBrowserRouter([
         path: "/detail/:id",
         element: (
           <ProtectedRoutes>
-            {" "}
             <BicycleDetail />
           </ProtectedRoutes>
         ),
@@ -68,31 +57,25 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // ✅ Dashboard Routes (Navbar & Footer ছাড়া)
+  // ✅ Dashboard Routes
   {
     path: "/dashboard",
-    element: <DashboardLayout />, // ✅ Navbar & Footer নেই
+    element: <DashboardLayout />, 
     children: [
-      { path: "/dashboard", element: <DashboardMain /> },
- //dashboard add userDetail
-      { path: "/dashboard/admin-user-detail/:id", element: <UserDetail /> },
-      //  ,
-      { path: "/dashboard/bicycle-controller", element: <BicycleController /> },
-      // { path: "/dashboard/order", element: <Order /> },
-      { path: "/dashboard/orderManagement", element: <OrderManagement /> },
-      { path: "/dashboard/UserManagement", element: <UserManagement /> },
-       //dashboard add userDetail
-       { path: "/dashboard/admin-user-detail/:id", element: <UserDetail /> },
-      { path: "/dashboard/admin-profile", element: <AdminProfile /> },
-      { path: "/dashboard/transactions", element: <Transaction /> },
-
-      /* dashboard user routes */
-      { path: "/dashboard/user", element: <User /> },
-
-      { path: "/dashboard/user-profile", element: <UpdateProfile /> },
-
-      { path: "/dashboard/userOrder", element: <UserOrderDetail /> },
-     
+      { path: "", element: <DashboardMain /> }, // Default dashboard route
+      
+      /* Admin Routes */
+      { path: "bicycle-controller", element: <BicycleController /> },
+      { path: "orderManagement", element: <OrderManagement /> },
+      { path: "UserManagement", element: <UserManagement /> },
+      { path: "admin-profile", element: <AdminProfile /> },
+      { path: "transactions", element: <Transaction /> },
+      { path: "admin-user-detail/:id", element: <UserDetail /> }, 
+      
+      /* User Routes */
+      { path: "user", element: <User /> },
+      { path: "user-profile", element: <UpdateProfile /> },
+      { path: "userOrder", element: <UserOrderDetail /> },
     ],
   },
 ]);

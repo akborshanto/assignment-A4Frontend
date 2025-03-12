@@ -49,11 +49,11 @@ const cartItemCount = useSelector((state) =>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <Link to="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md  text-lg font-medium">Home</Link>
-                  <Link to="/all-Bicycle" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">All-Bicycle</Link>
-                  <Link to="/about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</Link>
+                  <Link to="/" className="text-white hover:text-blue-600 px-3 py-2 rounded-md  text-lg font-medium">Home</Link>
+                  <Link to="/all-Bicycle" className="text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">All-Bicycle</Link>
+                  <Link to="/about" className="text-white hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium">About</Link>
                   {
-                    user &&    <Link to="/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Dashboard</Link>
+                    user &&    <Link to="/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-600">Dashboard</Link>
 
                   }
 
@@ -62,7 +62,7 @@ const cartItemCount = useSelector((state) =>
             </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center gap-4">
-                <button className="p-2 rounded-full hover:bg-blue-100 text-gray-700 relative">
+                <button className="p-2 rounded-full hover:bg-blue-100 text-white relative">
                 <Link to="/cart" className="relative">
         <ShoppingCart></ShoppingCart>
         {cartItemCount > 0 && (
@@ -145,12 +145,12 @@ const cartItemCount = useSelector((state) =>
         {isMenuOpen && (
           <div className="md:hidden glass">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="/" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Home</a>
-              <a href="/shop" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Shop</a>
-              <a href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">About</a>
-              <a href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Contact</a>
-              <a href="/blog" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Blog</a>
-              <a href="/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Dashboard</a>
+              <a href="/" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-600">Home</a>
+              <a href="/shop" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-600">Shop</a>
+              <a href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-600">About</a>
+              <a href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-600">Contact</a>
+              <a href="/blog" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-600">Blog</a>
+              <a href="/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-blue-600">Dashboard</a>
             </div>
             <div className="px-4 py-3 border-t border-gray-200">
             {!user && (

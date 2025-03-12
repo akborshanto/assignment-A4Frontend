@@ -64,6 +64,10 @@ export const baseApi = MainbaseApi.injectEndpoints({
          getOrderId: builder.query({
           query: (orderId) => `/order/${orderId}`,
         }),
+         // Get single order by ID
+         getOrderUserId: builder.query({
+          query: (userId) => `/order/user/${userId}`,
+        }),
   
   
   
@@ -82,6 +86,7 @@ export const {
   useGetUserEmailQuery,
   useAddOrderMutation,
   useGetOrderIdQuery,
-  useGetAllOrderQuery
+  useGetAllOrderQuery,
+  useGetOrderUserIdQuery
 
 } = baseApi;

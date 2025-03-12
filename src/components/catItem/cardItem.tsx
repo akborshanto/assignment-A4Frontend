@@ -5,7 +5,6 @@ const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
 
-  console.log("Cart Items:", cartItems); // ✅ Debugging করতে Console Log দিন
 
   return (
     <div className="max-w-2xl mx-auto pt-56 min-h-screen">

@@ -1,8 +1,16 @@
 import React from 'react'
 
 const UserOrderDetail= () => {
+
   return (
-    <div>user.order.detail</div>
+    <div>
+
+console.log
+
+
+
+
+    </div>
   )
 }
 

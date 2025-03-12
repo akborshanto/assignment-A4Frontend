@@ -47,7 +47,7 @@ const RegisterForm = () => {
 
   // Form Submit Handler
   const onSubmit = async (data: any) => {
-    console.log(data)
+ 
     if (!photo) {
       setUploadError("Please upload an image before submitting.");
       return;
@@ -64,7 +64,7 @@ const RegisterForm = () => {
       toast.success("User created successfully!");
       navigate('/login');
     } catch (error) {
-      console.error("Error submitting form:", error);
+      
       toast.error('Something went wrong...');
     }
   };
