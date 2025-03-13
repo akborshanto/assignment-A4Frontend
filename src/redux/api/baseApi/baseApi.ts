@@ -68,12 +68,7 @@ export const baseApi = MainbaseApi.injectEndpoints({
          getOrderUserId: builder.query({
           query: (userId) => `/order/user/${userId}`,
         }),
-        // all revenue
-        getAllStats: builder.query({
-          query: () => "/order/stats/revenue",
-          
-    
-        }),
+        
   
   
   
@@ -93,6 +88,6 @@ export const {
   useGetOrderIdQuery,
   useGetAllOrderQuery,
   useGetOrderUserIdQuery,
-  useGetAllStatsQuery
+
 
 } = baseApi;

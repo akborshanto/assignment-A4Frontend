@@ -60,7 +60,7 @@ const specialOffers = [
     description: 'Get up to 30% off on selected mountain bikes',
     discount: '30%',
     endDate: '2024-08-31',
-    image:  'https://images.unsplash.com/photo-1622762918456-cce865079922?auto=format&fit=crop&q=80&w=600',
+    image:  'https://images.unsplash.com/photo-1571068316344-75bc76f77890?auto=format&fit=crop&q=80&w=600',
     
   },
   {

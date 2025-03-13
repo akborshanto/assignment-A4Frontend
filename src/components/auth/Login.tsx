@@ -3,8 +3,8 @@ import { X, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useLoginMutation } from '../../redux/auth/auth.api';
 import { Link, useNavigate } from 'react-router-dom';
-import { setUser } from '../../redux/auth/authSlice';
-import { useAppDispatch } from '../../redux/app/hook';
+import { selectCurrentUser, setUser } from '../../redux/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/app/hook';
 import { verifyToken } from '../../token/token.utils';
 import toast from 'react-hot-toast';
 
@@ -21,6 +21,7 @@ interface IFormInput {
 const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
   const dispatch = useAppDispatch();
   const navigate=useNavigate()
+   const userRole = useAppSelector(selectCurrentUser);
   const [showPassword, setShowPassword] = useState(false); 
   const [login, { error, isLoading }] = useLoginMutation(); 
 
@@ -39,7 +40,12 @@ try {
       
       dispatch(setUser({ user, token: res.token }));
  // Navigate to the corresponding dashboard based on the user's role
-navigate(`/dashboard`);
+
+if (user?.role === "admin") {
+  navigate(`/dashboard`);
+} 
+
+
 toast.success("Successfully login😍")
 } catch (error) {
   

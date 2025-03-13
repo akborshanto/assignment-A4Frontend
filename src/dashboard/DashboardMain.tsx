@@ -3,11 +3,12 @@ import { Sidebar } from '../dashboard/Sidebar';
 
 import { Slider } from '../dashboard/Slider';
 import { GlassCard } from '../dashboard/GlassCard';
-import { BarChart3, Users, ShoppingCart, TrendingUp } from 'lucide-react';
+import { BarChart3, Users, ShoppingCart, TrendingUp, Bike } from 'lucide-react';
 import { DashboardCard } from './DashboardCard';
 import { useAppSelector } from '../redux/app/hook';
 import { selectCurrentUser } from '../redux/auth/authSlice';
-import { useGetAllStatsQuery } from '../redux/api/baseApi/baseApi';
+import { useGetAllStatsQuery } from '../redux/auth/auth.api';
+
 const sliderItems = [
   {
     image: 'https://i.ibb.co.com/5XjkyGTh/pexels-davidmcbee-255934.jpg',
@@ -31,10 +32,8 @@ function DashboardMain() {
   const user = useAppSelector(selectCurrentUser);
 
   //const { data, error, isLoading } = useGetOrderIdQuery(user?._id);
-  const { data, } = useGetAllStatsQuery(undefined);
-  console.log(data)
-
-  console.log(data)
+  const { data } = useGetAllStatsQuery(undefined);
+console.log(data)
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       <Sidebar />
@@ -47,7 +46,7 @@ function DashboardMain() {
               <GlassCard className="flex-1 w-full">
                 <div className="flex items-center gap-4">
                   <img
-                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde"
+                    src={user?.photo}
                     alt="User"
                     className="w-16 h-16 rounded-full object-cover"
                   />
@@ -66,31 +65,45 @@ function DashboardMain() {
               <DashboardCard
                 icon={TrendingUp}
                 title="Total Revenue"
-                value="$24,560"
+                value={data?.totalRevenue}
                 trend={{ value: "+2.5%", up: true }}
                 color="purple"
               />
               <DashboardCard
                 icon={Users}
                 title="Total Users"
-                value="1,234"
+                value={data?.totalUsers}
                 trend={{ value: "+12.3%", up: true }}
                 color="purple"
               />
               <DashboardCard
                 icon={ShoppingCart}
                 title="Total Orders"
-                value="456"
+                value={data?.totalOrders}
                 trend={{ value: "-0.5%", up: false }}
                 color="indigo"
               />
               <DashboardCard
-                icon={BarChart3}
-                title="Conversion Rate"
-                value="3.2%"
+                icon={Bike}
+                title="Total  Bicycle"
+                value={data?.totalBicycle}
                 trend={{ value: "+1.2%", up: true }}
                 color="emerald"
               />
+              {/* <DashboardCard
+                icon={BarChart3}
+                title={data?.monthlyRevenue.map(m=>m._id)}
+                value={data?.monthlyRevenue.map(m=>m.totalMonthlyRevenue)}
+                trend={{ value: "+1.2%", up: true }}
+                color="emerald"
+              />
+              <DashboardCard
+                icon={BarChart3}
+                title="Total  Bicycle"
+                value={data?.totalBicycle}
+                trend={{ value: "+1.2%", up: true }}
+                color="emerald"
+              /> */}
             </div>
 
             {/* Slider Section */}

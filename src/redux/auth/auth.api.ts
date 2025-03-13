@@ -43,6 +43,14 @@ const authApi = MainbaseApi.injectEndpoints({
       }),
       invalidatesTags: ["User"], // Data refresh
     }),
+
+    //dashboar revenue
+    // all revenue
+    getAllStats: builder.query({
+      query: () => "/order/stats/revenue",
+      
+
+    }),
   }),
 });
 
@@ -52,5 +60,6 @@ export const {
   useGetSingleUserIdQuery,
   useDeleteUserMutation,
   useGetUserEmailQuery,
-  useUpdateUserMutation, // ✅ Export the updateUser mutation
+  useUpdateUserMutation, 
+  useGetAllStatsQuery// ✅ Export the updateUser mutation
 } = authApi;
